@@ -2,14 +2,14 @@
 
 ## Manual test script (about 15 minutes)
 
-Open the live site (or the APK). Data is saved in your browser; use **Reset demo** in Settings (or on the About page) to start over. Switch people with the **Viewing as** menu at the top.
+Open the live site (or the APK). Data is saved in your browser; use **Reset demo** in Settings (or on the About page) to start over. Sign in on the **Demo only** panel (pick the Client, Cleaning team or Owner tab, then a person), or type a demo email into the real sign-in form. Switch people with the **Demo** switcher at the top.
 
 **1. Visitor → booking**
 1. On the home page, try the price estimator on **Pricing**.
 2. **Book a cleaning**: fill the form and send it. You'll see a confirmation.
 
 **2. Jamie (cleaning tech)**
-1. Log in → **Jamie Rivera**. The dashboard shows today's home.
+1. Sign in → **Cleaning team** tab → **Jamie Rivera** (or type `jamie@gist.demo`). The dashboard shows today's home.
 2. **Clock in** (the demo simulates being on site so you can test from anywhere; as Dustin, turn off **Simulate being on-site** in Settings to use real GPS in the browser or on Android, and clock-in then only works within 150 m of the home). Open **Details** to see the home's checklist and tick a few tasks. **Clock out**.
 3. **Time**: edit an entry (a note is required), then **Submit hours**.
 4. **Pay**: open a paystub, tap **Explain this paystub**.
@@ -43,7 +43,7 @@ Run against a local build (`cd app && npm run build && npx vite preview --host 1
 
 ```bash
 python tools/smoke.py http://127.0.0.1:4173/                 # every public route + every route for each role: no console errors, no blank pages
-python tools/flows.py http://127.0.0.1:4173/ ./shots         # 16 end-to-end flows (booking, clock, submit, PTO, AI stub, approvals,
+python tools/flows.py http://127.0.0.1:4173/ ./shots         # 17 end-to-end flows (booking, clock, submit, PTO, AI stub, approvals,
                                                              # payroll, schedule, booking→client, invoices, messages, assistant,
                                                              # client pay, client cancel, staff-only docs, 390px mobile overflow on ~30 screens)
 python tools/check_leaks.py <private-docs-dir>               # must print 0 hits before any public push

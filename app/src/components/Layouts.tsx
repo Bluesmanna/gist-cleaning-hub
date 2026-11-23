@@ -198,7 +198,8 @@ export function RoleSwitcher() {
   ]
   return (
     <label className="role-switch">
-      <span className="lbl small muted">Viewing as</span>
+      <span className="demo-chip" title="Prototype only: in the real app you are signed in as one person">Demo</span>
+      <span className="lbl small muted">viewing as</span>
       <select
         aria-label="Switch demo user"
         value={me?.id || ''}

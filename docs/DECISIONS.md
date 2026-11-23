@@ -6,12 +6,14 @@ Short notes on why the prototype is built the way it is. Each one is reversible;
 
 GIST currently runs on a website (gistcleaning.com), Gusto (time, schedule, pay, onboarding), Google Drive (SOPs, handbooks, agreements), texts/email with clients, and Venmo/Zelle/Square. The hub puts all of that behind one login with three roles — **owner/manager**, **employee**, **client** — plus the public website for visitors. One codebase serves the website, the web app and the Android app.
 
+**One sign-in, demo accounts kept apart (Rob, after the first review):** the first version listed every demo person on the login page, which no real app would do. Now the page has the real shape: one sign-in form for everyone (email link or Google) where the account decides whether you land in the client portal, the team app or the owner tools. Next to it, a dashed panel marked **Demo only** holds the made-up accounts, one role per tab (Client, Cleaning team, Owner), and the person switcher in the app is labelled **Demo**. In the prototype the email form signs a demo email in straight away (nothing is sent) and Google shows a "comes with the backend" note.
+
 ## Self-contained demo (no server)
 
 | Now | Why | Later |
 |---|---|---|
 | All data lives in the browser (IndexedDB), seeded with fake people relative to today's date | Anyone Dustin sends the link to can click everything, approve, pay, cancel, without accounts, a backend bill or risk to real data. The demo always looks "live" because the seed is generated from the current date. | Supabase (Postgres + auth + storage + row-level security). The data model in `app/src/lib/types.ts` is already table-shaped. See [BACKEND.md](BACKEND.md). |
-| Role switcher ("Viewing as") | Lets one person see how a change flows from employee → owner → client. | Real sign-in (email magic link / Google); the switcher disappears. |
+| Demo sign-in panel + "Demo" person switcher | Lets one person see how a change flows from employee → owner → client. | Real sign-in (email magic link / Google), already shown on the sign-in page; the demo panel and switcher disappear. |
 | Notifications and messages are local | They show the flow (bell, badges, threads) end to end. | Supabase realtime + push notifications (Capacitor Push / FCM). |
 
 ## Pay rules researched, payroll estimated

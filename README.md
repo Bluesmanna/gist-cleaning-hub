@@ -6,9 +6,9 @@
 
 **Try it:** **https://gistcleaninghub.com** (also at bluesmanna.github.io/gist-cleaning-hub) · **Android APK:** [latest release](https://github.com/Bluesmanna/gist-cleaning-hub/releases/latest)
 
-No sign-up. Open **Log in** and tap any demo person to see the app as them; switch people any time from the "Viewing as" menu at the top. Everything you do is saved in your own browser, and **Settings → Reset demo data** puts it back.
+No sign-up. Open **Sign in**: the left side is the sign-in a real customer or employee would see (one email/Google login for everyone; the account decides the view, and typing a demo email like `jamie@gist.demo` works). The right side, marked **Demo only**, lets you try it as a Client, Cleaning team member or the Owner, one tab at a time. Inside, the **Demo** switcher at the top changes person any time. Everything you do is saved in your own browser, and **Settings → Reset demo data** puts it back.
 
-| Log in as | Role | Good things to try |
+| Sign in as | Role | Good things to try |
 |---|---|---|
 | **Dustin Sipes** | Owner / manager | Approve hours, PTO and receipts · run payroll · build and publish next week's schedule · turn a website booking into a client · send invoices · reports · message anyone |
 | **Jamie Rivera** | Cleaning tech | Clock in at today's home (location simulated) · check off the home's task list · submit hours · paystubs (ask the AI to explain one) · request time off · log mileage/receipts · set availability |

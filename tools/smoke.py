@@ -29,6 +29,8 @@ with sync_playwright() as p:
     for r in PUBLIC: visit(r, 'public')
     for uid, routes in ROLES.items():
         pg.goto(BASE + '#/login'); pg.reload(); pg.wait_for_timeout(600)
+        tab = {'u_owner': 'Owner', 'u_jamie': 'Cleaning team', 'u_taylor': 'Cleaning team', 'u_client1': 'Client'}[uid]
+        pg.get_by_role('tab', name=tab).click(); pg.wait_for_timeout(200)
         btns = pg.locator('button.btn.block')
         names = pg.evaluate("""() => [...document.querySelectorAll('button.btn.block')].map(b => b.innerText)""")
         name = {'u_owner': 'Dustin', 'u_jamie': 'Jamie', 'u_taylor': 'Taylor', 'u_client1': 'Aspen'}[uid]

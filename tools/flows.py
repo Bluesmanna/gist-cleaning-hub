@@ -35,7 +35,10 @@ def login(pg, who):
     go(pg, 'login')
     pg.reload()
     pg.wait_for_timeout(500)
-    pg.locator('button.btn.block', has_text=who).first.click()
+    # the demo panel shows one kind of account at a time: pick the role tab first
+    tab = {'Dustin': 'Owner', 'Aspen': 'Client'}.get(who, 'Cleaning team')
+    pg.get_by_role('tab', name=tab).click()
+    pg.locator('.demo-card button.btn.block', has_text=who).first.click()
     pg.wait_for_timeout(500)
 
 
@@ -212,6 +215,33 @@ def mobile_overflow(pg):
         raise Exception('horizontal overflow: ' + '; '.join(bad))
 
 
+def sign_in(pg):
+    """One real sign-in form for everyone; the demo panel is separate, labelled, one role at a time."""
+    go(pg, 'login')
+    pg.reload()
+    pg.wait_for_timeout(500)
+    demo = pg.locator('.demo-card')
+    if not demo.locator('.badge', has_text='Demo only').count():
+        raise Exception('demo panel is not labelled Demo only')
+    for tab, yes, no in [('Client', 'Aspen', 'Jamie'), ('Cleaning team', 'Jamie', 'Dustin'), ('Owner', 'Dustin', 'Aspen')]:
+        pg.get_by_role('tab', name=tab).click()
+        pg.wait_for_timeout(150)
+        if not demo.locator('button.btn.block', has_text=yes).count() or demo.locator('button.btn.block', has_text=no).count():
+            raise Exception(f'{tab} tab shows the wrong accounts')
+    form = pg.locator('form.login-real')
+    form.locator('input[type=email]').fill('nobody@example.com')
+    form.get_by_role('button', name='Email me a sign-in link').click()
+    pg.wait_for_selector('form.login-real [role=alert]', timeout=2000)
+    form.locator('input[type=email]').fill('Jamie@gist.demo')
+    form.get_by_role('button', name='Email me a sign-in link').click()
+    pg.wait_for_timeout(600)
+    if not pg.url.endswith('#/app'):
+        raise Exception('email sign-in did not open the app: ' + pg.url)
+    if not pg.locator('.role-switch .demo-chip', has_text='Demo').count():
+        raise Exception('person switcher is not marked Demo')
+    shot(pg, 'sign-in-email')
+
+
 def docs_gated(pg):
     """Company docs are staff-only: hidden from visitors (route, footer, assistant) and clients."""
     def sign_out():
@@ -257,7 +287,7 @@ with sync_playwright() as p:
     pg.on('dialog', lambda d: d.accept())
     go(pg, '')
     for f in [public_booking, emp_clock, emp_submit, emp_pto, emp_stub_ai, owner_approve, owner_payroll, owner_schedule, owner_booking,
-              owner_invoices, owner_message, assistant, client_pay, client_cancel, docs_gated, mobile_overflow]:
+              owner_invoices, owner_message, assistant, client_pay, client_cancel, sign_in, docs_gated, mobile_overflow]:
         run(f.__name__, f, pg)
     b.close()
 for r in results:

@@ -1,13 +1,13 @@
 // Public website: everything gistcleaning.com has (services, pricing, about, policy,
 // updates, organization gallery) plus online booking, careers and sign-in.
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type FormEvent } from 'react'
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { ArrowRight, Briefcase, CalendarCheck, Check, Clock, ThumbsUp, Heart, Mail, MapPin, Phone, ShieldCheck, Sparkles, Users } from 'lucide-react'
 import { useStore } from '../lib/store'
 import { ABOUT, ADDONS, CANCELLATION, COMPANY, HIRING, IMAGES, ORG_GALLERY, SERVICES, TESTIMONIALS, UPDATES } from '../data/site'
 import type { AddOnKey, Booking, ServiceKey } from '../lib/types'
 import { addDays, fmtDay, money, today, uid } from '../lib/dates'
-import { Avatar, Field, Lightbox } from '../components/ui'
+import { Avatar, Field, Lightbox, Tabs } from '../components/ui'
 
 const SVC_IMG: Record<ServiceKey, string> = {
   basic: IMAGES.cleaning,
@@ -615,7 +615,7 @@ export function Book() {
               <p>
                 Dustin will reach out within a day to set up a free walk-through for your {SERVICES.find((s) => s.key === done.service)?.name}. Estimated {money(est.perVisit)} per visit.
               </p>
-              <p className="small muted">Demo tip: switch to the owner (top of the app, “Viewing as”) and open Bookings to see this request arrive.</p>
+              <p className="small muted">Demo tip: switch to the owner (the <b>Demo</b> switcher at the top of the app) and open Bookings to see this request arrive.</p>
               <div className="row" style={{ justifyContent: 'center' }}>
                 <Link className="btn" to="/">
                   Back home
@@ -733,62 +733,124 @@ export function Book() {
 }
 
 export function Login() {
-  const { state, setUser } = useStore()
+  const { state, setUser, toast } = useStore()
   const nav = useNavigate()
   // where the person was headed before being asked to sign in (e.g. a company doc link)
   const from = (useLocation().state as { from?: string } | null)?.from
   const wantsDocs = !!from?.startsWith('/app/docs')
+  const [email, setEmail] = useState('')
+  const [miss, setMiss] = useState(false)
+  const [tab, setTab] = useState<DemoRole>(wantsDocs ? 'employee' : 'client')
   const pick = (id: string) => {
     setUser(id)
     nav(from?.startsWith('/app') ? from : '/app')
   }
-  const groups: { title: string; icon: typeof Users; role: string; blurb: string }[] = [
-    { title: 'Owner', icon: ShieldCheck, role: 'owner', blurb: 'Schedule, approvals, payroll, bookings, invoices, clients, settings.' },
-    { title: 'Employees', icon: Users, role: 'employee', blurb: 'Clock in/out, shifts, pay, PTO, expenses, onboarding, SOPs.' },
-    { title: 'Clients', icon: Heart, role: 'client', blurb: 'Upcoming cleanings, cancel/reschedule, invoices, messages.' },
-  ]
+  // The real sign-in: one form for everyone; the account decides which view opens.
+  const submit = (e: FormEvent) => {
+    e.preventDefault()
+    const u = state.users.find((x) => x.active !== false && x.email.toLowerCase() === email.trim().toLowerCase())
+    if (!u) return setMiss(true)
+    toast('Prototype: no email is sent, so you’re signed in straight away')
+    pick(u.id)
+  }
+  const R = DEMO_ROLES[tab]
   return (
     <section className="section">
-      <div className="wrap" style={{ maxWidth: 980 }}>
-        <div className="section-title">
-          <h2>Sign in</h2>
-          <p>This is a demo: pick anyone to see the app as they would. Switch any time from “Viewing as” at the top.</p>
-        </div>
+      <div className="wrap" style={{ maxWidth: 1000 }}>
         {wantsDocs && (
           <div className="notice warn" style={{ marginBottom: 16 }}>
-            <ShieldCheck size={16} /> Company docs (handbooks, SOPs, agreements and home checklists) are for the GIST team. Sign in as the owner or an employee to open them.
+            <ShieldCheck size={16} /> Company docs (handbooks, SOPs, agreements and home checklists) are for the GIST team. Sign in as the owner or a team member to open them.
           </div>
         )}
-        <div className="grid g3">
-          {groups.map((g) => (
-            <div key={g.role} className="card login-card">
-              <div className="row" style={{ gap: 8 }}>
-                <g.icon />
-                <h3 style={{ margin: 0 }}>{g.title}</h3>
+        <div className="login-grid">
+          <form className="card login-real" onSubmit={submit}>
+            <h2 style={{ margin: '0 0 6px' }}>Sign in</h2>
+            <p className="small muted" style={{ marginTop: 0 }}>
+              One sign-in for everyone: clients, the cleaning team and the owner. Your account decides what you see.
+            </p>
+            <label className="field">
+              <span>Email</span>
+              <input
+                type="email"
+                autoComplete="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                  setMiss(false)
+                }}
+                required
+              />
+            </label>
+            {miss && (
+              <div className="notice warn small" role="alert" style={{ marginBottom: 10 }}>
+                No GIST account uses that email. This is a prototype, so use one of the demo accounts (their emails are listed with them).
               </div>
-              <p className="small muted">{g.blurb}</p>
-              <div className="stack" style={{ gap: 8 }}>
-                {state.users
-                  .filter((u) => u.role === g.role || (g.role === 'owner' && u.role === 'manager'))
-                  .map((u) => (
-                    <button key={u.id} className="btn light block" style={{ justifyContent: 'flex-start' }} onClick={() => pick(u.id)}>
-                      <Avatar name={u.name} color={u.color} />
-                      <span style={{ textAlign: 'left' }}>
-                        <div>{u.name}</div>
-                        <div className="tiny muted" style={{ fontWeight: 500 }}>{u.title}</div>
-                      </span>
-                    </button>
-                  ))}
-              </div>
+            )}
+            <button className="btn block" type="submit">
+              <Mail size={17} /> Email me a sign-in link
+            </button>
+            <div className="or">
+              <span>or</span>
             </div>
-          ))}
+            <button type="button" className="btn light block" onClick={() => toast('Google sign-in comes with the real backend. For now, use a demo account.')}>
+              Continue with Google
+            </button>
+            <p className="tiny muted" style={{ margin: '14px 0 0' }}>
+              New client? <Link to="/book">Book a cleaning</Link> and Dustin sets up your account. New hire? Dustin sends you an invite by email.
+            </p>
+          </form>
+          <div className="card demo-card">
+            <div className="row between nowrap" style={{ marginBottom: 4 }}>
+              <h3 style={{ margin: 0 }}>Try the prototype</h3>
+              <span className="badge warn">Demo only</span>
+            </div>
+            <p className="small muted" style={{ marginTop: 4 }}>
+              The real app won’t have this panel. Choose who you want to try it as, then pick a made-up account.
+            </p>
+            <Tabs tabs={(Object.keys(DEMO_ROLES) as DemoRole[]).map((k) => ({ id: k, label: DEMO_ROLES[k].label }))} value={tab} onChange={setTab} />
+            <p className="small" style={{ margin: '12px 0' }}>{R.blurb}</p>
+            <div className="stack" style={{ gap: 8 }}>
+              {state.users
+                .filter((u) => R.roles.includes(u.role))
+                .map((u) => (
+                  <button key={u.id} className="btn light block demo-acct" onClick={() => pick(u.id)}>
+                    <Avatar name={u.name} color={u.color} />
+                    <span>
+                      <div>{u.name}</div>
+                      <div className="tiny muted">{u.title}</div>
+                      <div className="tiny muted">{u.email}</div>
+                    </span>
+                  </button>
+                ))}
+            </div>
+            <p className="tiny muted" style={{ margin: '12px 0 0' }}>
+              Inside the app, the <b>Demo</b> switcher at the top changes person any time. The real login (email link or Google) is planned in the repo’s docs/BACKEND.md.
+            </p>
+          </div>
         </div>
-        <p className="small muted center mt">
-          In production this is a real login (email magic link or Google) — see the repo’s docs/BACKEND.md.
-        </p>
       </div>
     </section>
   )
+}
+
+type DemoRole = 'client' | 'employee' | 'owner'
+const DEMO_ROLES: Record<DemoRole, { label: string; roles: string[]; blurb: string }> = {
+  client: {
+    label: 'Client',
+    roles: ['client'],
+    blurb: 'The client portal: upcoming cleanings, cancel or reschedule (fee shown up front), invoices and payment, messages and home preferences.',
+  },
+  employee: {
+    label: 'Cleaning team',
+    roles: ['employee'],
+    blurb: 'The team app (what Gusto does today, plus GIST’s own tools): clock in and out on site, schedule, availability, pay and paystubs, time off, expenses, onboarding, Handbook & SOPs.',
+  },
+  owner: {
+    label: 'Owner',
+    roles: ['owner', 'manager'],
+    blurb: 'Dustin’s tools: schedule builder, approvals, payroll, bookings, clients, invoices, reports and settings.',
+  },
 }
 
 export function AboutApp() {
