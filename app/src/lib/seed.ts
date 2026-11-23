@@ -205,7 +205,7 @@ export function seed(): State {
       { id: 'to3', employeeId: 'u_sam', start: addDays(t, 10), end: addDays(t, 10), hours: 0, type: 'unpaid', reason: 'Exam day', status: 'approved', createdAt: addDays(t, -6) },
     ],
     payrolls: [], stubs: [], expenses: [], cardTxns: [], tasks: [], notices: [], bookings: [], invoices: [], messages: [], uploads: [], signatures: [],
-    settings: { geofenceMeters: 150, simulateOnSite: true, aiProvider: 'offline', bridgeUrl: 'http://127.0.0.1:8787', bridgeToken: '', anthropicKey: '', anthropicModel: 'claude-sonnet-5-5' },
+    settings: { geofenceMeters: 150, simulateOnSite: true, aiProvider: 'live', aiLive: 1, bridgeUrl: 'http://127.0.0.1:8787', bridgeToken: '', anthropicKey: '', anthropicModel: 'claude-sonnet-5-5' },
   }
 
   // --- expenses + processed payrolls, oldest first, so reimbursements land on the right stub ---

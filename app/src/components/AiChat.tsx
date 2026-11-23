@@ -17,7 +17,7 @@ interface Turn extends AiMessage {
 // Conversations survive closing the panel (per signed-in user) for the session.
 const HISTORY = new Map<string, Turn[]>()
 
-const PROVIDER_LABEL = { offline: 'Offline assistant (built-in)', bridge: 'Claude via your PC bridge', anthropic: 'Claude API' }
+const PROVIDER_LABEL = { live: 'Live: Claude (Rob’s Claude Code)', offline: 'Offline assistant (built-in)', bridge: 'Claude via your PC bridge', anthropic: 'Claude API' }
 
 function suggestions(role: string): string[] {
   if (role === 'employee') return ['When is my next shift?', 'How much PTO do I have?', 'What will my next paycheck be?', 'How do I clean the shower glass?', 'What do I do if I break something?']
@@ -29,6 +29,9 @@ function suggestions(role: string): string[] {
 export function AiChat({ onClose, inline }: { onClose?: () => void; inline?: boolean }) {
   const { state, me, role } = useStore()
   const key = me?.id || 'public'
+  // Two assistants: the team one (staff: SOPs, handbook, pay rules) and the customer one.
+  const team = role === 'employee' || role === 'owner' || role === 'manager'
+  const title = team ? 'GIST Team Assistant' : 'GIST Assistant'
   const [turns, setTurns] = useState<Turn[]>(() => HISTORY.get(key) || [])
   const [text, setText] = useState('')
   const [busy, setBusy] = useState(false)
@@ -61,11 +64,14 @@ export function AiChat({ onClose, inline }: { onClose?: () => void; inline?: boo
   }
 
   return (
-    <div className={`ai-panel${inline ? ' inline' : ''}`} role="dialog" aria-label="GIST Assistant">
+    <div className={`ai-panel${inline ? ' inline' : ''}`} role="dialog" aria-label={title}>
       <div className="ai-head">
         <Sparkles size={20} color="#5f7440" />
         <div className="grow">
-          <div className="t">GIST Assistant</div>
+          <div className="t">
+            {title}
+            {state.settings.aiProvider === 'live' && <span className="live-dot" title="Answers come from Claude, live">Live</span>}
+          </div>
           <div className="tiny muted">{PROVIDER_LABEL[state.settings.aiProvider]}</div>
         </div>
         {turns.length > 0 && (
@@ -85,8 +91,10 @@ export function AiChat({ onClose, inline }: { onClose?: () => void; inline?: boo
             <div className="bubble assistant">
               <div className="md">
                 <p>
-                  Hi{me ? ` ${me.name.split(' ')[0]}` : ''}! I know GIST’s services, prices, policies, every SOP and handbook
-                  {me && role !== 'public' ? ', and your own ' + (role === 'client' ? 'visits and invoices' : role === 'employee' ? 'schedule, hours and pay' : 'business data') : ''}. Ask me anything.
+                  Hi{me ? ` ${me.name.split(' ')[0]}` : ''}!{' '}
+                  {team
+                    ? `I’m the team assistant: I know GIST’s SOPs, handbook and policies, and your own ${role === 'employee' ? 'schedule, hours and pay' : 'business data'}. Ask me anything.`
+                    : `I know GIST’s services, prices, booking and policies${role === 'client' ? ', and your own visits and invoices' : ''}. Ask me anything.`}
                 </p>
               </div>
             </div>

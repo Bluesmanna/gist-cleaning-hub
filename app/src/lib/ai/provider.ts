@@ -1,4 +1,7 @@
 // One entry point for all AI in the app. Providers are interchangeable:
+//   live      — the default: the hosted demo assistant (Rob's Claude Code behind a public
+//               bridge, see live.ts). Two assistants: customers/visitors get public
+//               knowledge only, signed-in staff get the team assistant.
 //   offline   — built-in, no network; data lookups + doc retrieval (always available)
 //   bridge    — your own Claude Code on your PC (bridge/server.mjs runs `claude -p` with
 //               no tools, no MCP, no settings, an empty folder: it can only read the text
@@ -32,7 +35,7 @@ export interface AiRequest {
 export interface AiResult {
   text: string
   sources: { title: string; heading: string; link: string }[]
-  provider: 'offline' | 'bridge' | 'anthropic'
+  provider: 'live' | 'offline' | 'bridge' | 'anthropic'
   note?: string
 }
 
@@ -73,14 +76,19 @@ export async function ask(req: AiRequest, s: State, me: User | null): Promise<Ai
   if (provider === 'offline') return offlineAnswer(req, s, me)
   const { prompt, sources } = buildPrompt(req, s, me)
   try {
+    const audience = isStaff(me) ? 'team' : 'customer'
+    if (provider === 'live') {
+      const [{ askBridge }, { LIVE_AI_URL }] = await Promise.all([import('./bridge'), import('./live')])
+      return { text: await askBridge(LIVE_AI_URL, '', prompt, audience), sources, provider: 'live' }
+    }
     if (provider === 'bridge') {
       const { askBridge } = await import('./bridge')
-      return { text: await askBridge(s.settings.bridgeUrl, s.settings.bridgeToken, prompt), sources, provider: 'bridge' }
+      return { text: await askBridge(s.settings.bridgeUrl, s.settings.bridgeToken, prompt, audience), sources, provider: 'bridge' }
     }
     const { askAnthropic } = await import('./anthropic')
     return { text: await askAnthropic(s.settings.anthropicKey, s.settings.anthropicModel, SYSTEM_PROMPT, prompt), sources, provider: 'anthropic' }
   } catch (e) {
     const off = offlineAnswer(req, s, me)
-    return { ...off, note: `${provider === 'bridge' ? 'Claude bridge' : 'Claude API'} unavailable (${(e as Error).message}) — showing the offline answer.` }
+    return { ...off, note: `${provider === 'live' ? 'Live Claude' : provider === 'bridge' ? 'Claude bridge' : 'Claude API'} unavailable (${(e as Error).message}) — showing the offline answer.` }
   }
 }

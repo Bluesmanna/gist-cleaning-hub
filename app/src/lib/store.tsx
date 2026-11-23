@@ -42,6 +42,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         s = undefined
       }
       if (!s || s.version !== STATE_VERSION) s = await freshSeed()
+      // Saved demos from before the live assistant existed: switch them on once, keep their data.
+      if (s.settings.aiLive !== 1) s = { ...s, settings: { ...s.settings, aiProvider: 'live', aiLive: 1 } }
       if (alive) setState(s)
     })()
     return () => {

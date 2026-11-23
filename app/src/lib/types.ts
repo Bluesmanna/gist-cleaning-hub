@@ -267,12 +267,13 @@ export interface Signature {
   at: string
 }
 
-export type AiProviderId = 'offline' | 'bridge' | 'anthropic'
+export type AiProviderId = 'live' | 'offline' | 'bridge' | 'anthropic'
 
 export interface Settings {
   geofenceMeters: number
   simulateOnSite: boolean
   aiProvider: AiProviderId
+  aiLive?: number // 1 once a saved demo has been moved onto the live assistant (soft migration)
   bridgeUrl: string
   bridgeToken: string
   anthropicKey: string

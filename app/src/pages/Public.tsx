@@ -2,7 +2,7 @@
 // updates, organization gallery) plus online booking, careers and sign-in.
 import { useMemo, useState, type FormEvent } from 'react'
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
-import { ArrowRight, Briefcase, CalendarCheck, Check, Clock, ThumbsUp, Heart, Mail, MapPin, Phone, ShieldCheck, Sparkles, Users } from 'lucide-react'
+import { ArrowRight, Briefcase, CalendarCheck, Check, Clock, ThumbsUp, Heart, Mail, MapPin, Phone, ShieldCheck, Sparkles } from 'lucide-react'
 import { useStore } from '../lib/store'
 import { ABOUT, ADDONS, CANCELLATION, COMPANY, HIRING, IMAGES, ORG_GALLERY, SERVICES, TESTIMONIALS, UPDATES } from '../data/site'
 import type { AddOnKey, Booking, ServiceKey } from '../lib/types'

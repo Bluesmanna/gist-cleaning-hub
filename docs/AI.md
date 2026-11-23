@@ -2,7 +2,10 @@
 
 ## What it does
 
-- **GIST Assistant** — the sparkle button (bottom right) or **Assistant** in the menu. Ask about policies, SOPs, your schedule or pay, or how to use the app. Answers cite the docs they used (tap a source to open that section).
+- **Two assistants, both live.** The sparkle button (bottom right) or **Assistant** in the menu opens one of them, depending on who is asking:
+  - **GIST Assistant** (visitors and clients): services, prices, booking and policies, and for a signed-in client their own visits and invoices. It never sees handbooks, SOPs, agreements, staff pay or other clients.
+  - **GIST Team Assistant** (employees and the owner): adds the team rules (pay, PTO, roles, benefits, home SOP and privacy rules), the internal docs, and the person's own schedule, hours and pay.
+  Answers cite the docs they used (tap a source to open that section). A green **Live** tag shows the answer comes from Claude.
 - **Explain this paystub** (Pay → open a stub) — plain-English walkthrough of earnings, taxes and cards.
 - **Draft a reply with AI** (owner, Messages) — a warm reply in GIST's voice, which you can drop into the reply box and edit.
 - **Ask AI about this doc** (any doc page) — questions answered from that doc only.
@@ -12,17 +15,31 @@
 
 | Provider | Where it runs | Notes |
 |---|---|---|
-| **Offline (built-in)** — default | In the app, no network | Searches the docs and the user's data and answers common questions (fees, pay dates, PTO, schedule, policies). Always available, so the public demo never breaks. |
-| **Your Claude Code (bridge)** — proof of concept | Rob's PC, via `bridge/server.mjs` | Uses Rob's own Claude Code subscription, locked to GIST only (below). |
+| **Live Claude** — default | Rob's always-on PC, `bridge/server.mjs --public`, reached at `https://robert.tail48e80c.ts.net` (set in `app/src/lib/ai/live.ts`) | The hosted demo: Rob's own Claude Code (Sonnet), locked to GIST only (below), with the customer/team split and demo limits. If it's off or over its limit, the app quietly answers with the offline assistant and says so under the answer. |
+| **Offline (built-in)** | In the app, no network | Searches the docs and the user's data and answers common questions (fees, pay dates, PTO, schedule, policies). The fallback, so the demo never breaks. |
+| **Your own bridge** | Any PC with Claude Code, via `bridge/server.mjs` | For running the same bridge yourself (URL + token in Settings). |
 | **Claude API** | Anthropic API with a key | The production path. In the demo the key is typed into Settings and stays on the device; for real use move the call into a server function. |
 
-All three get the same input, built in `app/src/lib/ai/`:
+All of them get the same input, built in `app/src/lib/ai/`:
 
 - `skills/gist-assistant.md` and `skills/gist-business.md` — the "skills": how the assistant behaves and the public side of the business (services, prices, policies). `skills/gist-team.md` holds the internal side (pay rules, roles, benefits, home SOP and privacy rules) and is added to the prompt only when the person asking is signed in as staff; visitors and clients also only get public-site passages, never handbook, SOP or agreement excerpts.
 - `context.ts` — the asking user's own role-scoped data only: an employee sees their shifts, hours, stubs and PTO; a client sees their visits and invoices; the owner sees the business summary. Nobody's data leaks into another user's prompt.
 - `knowledge.ts` — retrieval over the doc library: the passages that match the question.
 
-## The Claude Code bridge (proof of concept)
+## The live demo assistant
+
+`bridge/server.mjs --public` runs on Rob's automation PC as the hidden scheduled task **GIST AI bridge** (starts at logon, re-checked every 10 minutes, restarts itself if it stops). A Tailscale Funnel gives it a public HTTPS address (`https://robert.tail48e80c.ts.net` → `127.0.0.1:8787`). It uses Rob's own Claude Code login (his personal account) and the Sonnet model. In public mode it also:
+
+- answers only requests from the GIST site and app (`gistcleaninghub.com`, the GitHub Pages address, the Android app's `https://localhost`, local previews); anything else gets 403
+- picks the assistant from the request's `audience`: `customer` (the default) gets the public skills only, and any team block in the prompt is cut out before Claude sees it; `team` adds `skills/gist-team.md`
+- limits use: 400 answers a day in total, and per visitor 15 per 10 minutes and 60 a day; at most 3 at once
+- hides error details from the public and never logs question text (only the time, assistant and answer time)
+
+The app decides staff vs customer from who is signed in. In this no-server demo that's a UI boundary like the docs (anyone can sign in as a demo employee); the real version checks a login token on the server.
+
+**Turning it off:** disable the scheduled task and stop the bridge, or run `tailscale funnel --https=443 off` on that PC. The site keeps working on the offline assistant.
+
+## Running the bridge yourself
 
 ```bash
 cd app && npm run bridge          # or: node bridge/server.mjs
@@ -37,11 +54,11 @@ The bridge runs `claude -p` with everything that could reach beyond GIST switche
 - `--setting-sources ""` — none of Rob's settings, hooks, memory or plugins
 - `--system-prompt-file` — Claude Code's normal prompt is replaced by the two GIST skills
 - runs in an empty temp folder with `--no-session-persistence`
-- listens on 127.0.0.1 only unless `--lan` is given, and then requires a random token; at most two requests at once; prompt size capped
+- listens on 127.0.0.1 only (a tunnel brings public traffic in `--public` mode); with `--lan` it listens on Wi-Fi and requires a random token; at most three requests at once; prompt size capped
 
 So Claude only ever sees the GIST skills and the text the app sends. It is disconnected from Rob's other projects, files and accounts.
 
-**Terms of service note.** A consumer Claude subscription is meant for the subscriber's own use. Running it for yourself as a personal proof of concept is in that spirit; serving it to other people (Dustin's team or clients) is not, and would need the Claude API (or a Claude for Work plan). That's why the bridge is opt-in, local, and documented as a demo only. The public site never calls it unless someone runs their own bridge.
+**Terms of service note.** A consumer Claude subscription is meant for the subscriber's own use. The live demo runs on Rob's personal subscription so Dustin can try the real thing; it's a short-term proof of concept with tight daily limits, not how a business should run it. For real use by the team and clients, switch the provider to the Claude API behind a server function (next section): same prompts, same two assistants, paid per use (a few cents a day at GIST's size).
 
 ## Path to production
 

@@ -36,9 +36,13 @@ Rob asked that every Drive doc be readable on the site *and* downloadable. The D
 
 The repo is public, so client SOPs are pseudonymized (plant-name households, fake streets, phones and door codes) and a leak checker (`tools/check_leaks.py`) compares every public file against the private originals before anything is pushed. See [PRIVACY.md](PRIVACY.md).
 
-## AI: useful in small places, offline by default
+## AI: useful in small places, live in the demo
 
-The assistant appears where it saves time (explain a paystub, draft a client reply, ask a doc, quote a booking) plus one general chat. It ships with an **offline** provider so the demo always answers. Rob's Claude Code can be plugged in through a deliberately locked-down bridge as a proof of concept, and the Claude API is wired as the production path. Each request only carries the asking user's own role-scoped data. See [AI.md](AI.md).
+The assistant appears where it saves time (explain a paystub, draft a client reply, ask a doc, quote a booking) plus one general chat. **Live Claude, two assistants (Rob, after the first review):** the demo now answers with Rob's own Claude Code through a locked-down public bridge on his always-on PC, split into a customer assistant (public knowledge, a client's own visits) and a team assistant (adds SOPs, handbook and pay rules). It has daily and per-visitor limits, and the built-in **offline** assistant answers whenever the live one is off, so the demo never breaks. The Claude API is wired as the production path. Each request only carries the asking user's own role-scoped data. See [AI.md](AI.md).
+
+## "Sign in" and "Get app" on the website
+
+The header button always says **Sign in** (it used to say "Open app" once signed in, which reads oddly when you're already in an app). Next to it, **Get app** downloads the Android APK straight from the repo's GitHub release (`releases/latest/download/gist-cleaning-hub.apk`), so there's no hosting cost and the button always gets the newest build. It's hidden inside the Android app itself.
 
 ## Branding
 

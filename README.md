@@ -4,7 +4,7 @@
 
 > Built by Robert (a GIST Residential Cleaning Tech) as a proof of concept for Dustin. It is **not** the official site — that's [gistcleaning.com](https://www.gistcleaning.com). Every client, address, paycheck and message in the demo is made up.
 
-**Try it:** **https://gistcleaninghub.com** (also at bluesmanna.github.io/gist-cleaning-hub) · **Android APK:** [latest release](https://github.com/Bluesmanna/gist-cleaning-hub/releases/latest)
+**Try it:** **https://gistcleaninghub.com** (also at bluesmanna.github.io/gist-cleaning-hub) · **Android app:** the **Get app** button on the site, or the [latest release](https://github.com/Bluesmanna/gist-cleaning-hub/releases/latest) (APK, about 14 MB)
 
 No sign-up. Open **Sign in**: the left side is the sign-in a real customer or employee would see (one email/Google login for everyone; the account decides the view, and typing a demo email like `jamie@gist.demo` works). The right side, marked **Demo only**, lets you try it as a Client, Cleaning team member or the Owner, one tab at a time. Inside, the **Demo** switcher at the top changes person any time. Everything you do is saved in your own browser, and **Settings → Reset demo data** puts it back.
 
@@ -38,7 +38,7 @@ A step-by-step test script for each role is in [docs/TESTING.md](docs/TESTING.md
 
 **Docs (from Google Drive)** — all 36 Drive docs (general SOP, 28 home SOPs, two project task lists, both handbooks, three agreement templates) are rendered as readable pages with a table of contents and search, and each downloads as **PDF, Word (.docx), Markdown or text**. They live **inside the team app only** (employees: **Handbook & SOPs**; owner: **SOPs & docs**), not on the public site or in the client portal. Client SOPs are **pseudonymized** for this public demo (see Privacy below).
 
-**AI** — a GIST assistant (floating button, or **Assistant** in the menu) plus small AI buttons where they help: explain a paystub, draft a reply to a client, ask a question about a doc, quote a booking. It works offline out of the box, and can be pointed at Rob's own Claude Code through a locked-down local bridge, or at the Claude API. See [docs/AI.md](docs/AI.md).
+**AI** — a GIST assistant (floating button, or **Assistant** in the menu) plus small AI buttons where they help: explain a paystub, draft a reply to a client, ask a question about a doc, quote a booking. It's **live**: answers come from Rob's own Claude Code through a locked-down bridge, as two separate assistants (a customer one for visitors and clients, a team one for employees and the owner that also knows the SOPs, handbook and pay rules). If the live assistant is off, the built-in offline assistant answers instead; the Claude API is wired as the production path. See [docs/AI.md](docs/AI.md).
 
 ## Docs
 

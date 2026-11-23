@@ -861,11 +861,19 @@ export function SettingsPage() {
         <div className="form-grid">
           <Field label="Provider" full>
             <select value={s.aiProvider} onChange={(e) => set({ aiProvider: e.target.value as typeof s.aiProvider })}>
+              <option value="live">Live Claude (the hosted demo: Rob’s Claude Code, customer + team assistants)</option>
               <option value="offline">Built-in (offline: searches the docs and app data, no network)</option>
               <option value="bridge">Claude via local bridge (proof of concept: Rob’s Claude Code)</option>
               <option value="anthropic">Anthropic API key (direct from this browser)</option>
             </select>
           </Field>
+          {s.aiProvider === 'live' && <div className="full">
+            <div className="row">
+              <button className="btn light sm" onClick={async () => { setHealth('Checking…'); const { LIVE_AI_URL } = await import('../lib/ai/live'); const r = await bridgeHealth(LIVE_AI_URL, ''); setHealth(r.ok ? 'Live assistant is up' : r.detail) }}>Test connection</button>
+              {health && <span className="small">{health}</span>}
+            </div>
+            <div className="tiny muted mt">Visitors and clients get the customer assistant (public info and their own visits only). The team and the owner get the team assistant (SOPs, handbook, pay rules). Demo limits apply; if it’s down, answers fall back to the built-in assistant.</div>
+          </div>}
           {s.aiProvider === 'bridge' && <>
             <Field label="Bridge URL"><input value={s.bridgeUrl} onChange={(e) => set({ bridgeUrl: e.target.value })} /></Field>
             <Field label="Bridge token"><input type="password" value={s.bridgeToken} onChange={(e) => set({ bridgeToken: e.target.value })} autoComplete="off" /></Field>

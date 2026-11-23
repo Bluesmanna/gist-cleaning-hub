@@ -3,8 +3,9 @@ import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-do
 import {
   Bell, BookOpen, Briefcase, Calendar, CalendarCheck, CalendarClock, CheckSquare, Clock, CreditCard, DollarSign, FileText, Home,
   Inbox, LayoutDashboard, LogOut, Menu, MessageSquare, MoreHorizontal, Receipt, Settings, Sparkles, Umbrella, User, UserPlus, Users,
-  BarChart3, ClipboardCheck, Wallet, X, ThumbsUp,
+  BarChart3, ClipboardCheck, Wallet, X, ThumbsUp, Download,
 } from 'lucide-react'
+import { Capacitor } from '@capacitor/core'
 import { useStore } from '../lib/store'
 import { COMPANY } from '../data/site'
 import { relTime } from '../lib/dates'
@@ -14,6 +15,8 @@ import { useBackClose } from '../lib/back'
 import { Avatar, DemoBanner, Logo, Modal } from './ui'
 
 /* ---------------- public site ---------------- */
+// The Android app, served free from the repo's GitHub release (always the newest build).
+const APK_URL = 'https://github.com/Bluesmanna/gist-cleaning-hub/releases/latest/download/gist-cleaning-hub.apk'
 const SITE_NAV = [
   { to: '/', label: 'Home', end: true },
   { to: '/about', label: 'About' },
@@ -21,7 +24,7 @@ const SITE_NAV = [
   { to: '/pricing', label: 'Pricing' },
   { to: '/organization', label: 'Organization' },
   { to: '/contact', label: 'Contact' },
-  { to: '/policies', label: 'Cancellation Policy' },
+  { to: '/policies', label: 'Policies' },
   { to: '/updates', label: 'Updates' },
 ]
 
@@ -71,8 +74,13 @@ export function PublicLayout() {
               Book a cleaning
             </Link>
             <Link className="btn ghost sm" to={me ? '/app' : '/login'}>
-              {me ? 'Open app' : 'Sign in'}
+              Sign in
             </Link>
+            {!Capacitor.isNativePlatform() && (
+              <a className="btn ghost sm get-app" href={APK_URL} download title="Android app (APK, about 14 MB)">
+                <Download size={15} /> Get app
+              </a>
+            )}
           </nav>
         </div>
       </header>

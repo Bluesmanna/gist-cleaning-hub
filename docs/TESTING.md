@@ -43,9 +43,11 @@ Run against a local build (`cd app && npm run build && npx vite preview --host 1
 
 ```bash
 python tools/smoke.py http://127.0.0.1:4173/                 # every public route + every route for each role: no console errors, no blank pages
-python tools/flows.py http://127.0.0.1:4173/ ./shots         # 17 end-to-end flows (booking, clock, submit, PTO, AI stub, approvals,
-                                                             # payroll, schedule, booking→client, invoices, messages, assistant,
-                                                             # client pay, client cancel, staff-only docs, 390px mobile overflow on ~30 screens)
+python tools/flows.py http://127.0.0.1:4173/ ./shots         # 18 end-to-end flows (booking, clock, submit, PTO, AI stub, approvals,
+                                                             # payroll, schedule, booking→client, invoices, messages, live team
+                                                             # assistant (fails if it fell back to offline), client pay, client cancel,
+                                                             # sign-in, header Sign in + Get app, staff-only docs incl. the visitor
+                                                             # assistant, 390px mobile overflow on ~30 screens)
 python tools/check_leaks.py <private-docs-dir>               # must print 0 hits before any public push
 ```
 

@@ -244,13 +244,15 @@ button.list-item { background: none; border: 0; border-bottom: 1px solid var(--l
 .site-header { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 30; }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 76px; }
 .site-nav { display: flex; align-items: center; gap: 4px; }
-.site-nav a { color: #555; padding: 8px 10px; border-radius: 8px; font-size: 0.93rem; text-decoration: none; white-space: nowrap; }
+.site-nav a { color: #555; padding: 8px 9px; border-radius: 8px; font-size: 0.93rem; text-decoration: none; white-space: nowrap; }
 .site-nav a:hover, .site-nav a.active { color: var(--navy); background: var(--butter-soft); }
 .site-nav .btn { margin-left: 8px; }
 .site-nav a.btn { color: #fff; }
 .site-nav a.btn.ghost { color: var(--navy); }
+.site-nav .get-app { gap: 6px; }
+.ai-head .live-dot { display: inline-block; margin-left: 8px; vertical-align: 2px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; background: #5f7440; border-radius: 999px; padding: 2px 7px; }
 .icon-btn.menu-btn { display: none; }
-@media (max-width: 1140px) {
+@media (max-width: 1180px) {
   .icon-btn.menu-btn { display: inline-flex; }
   .site-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; align-items: stretch; padding: 10px 16px 16px; border-bottom: 1px solid var(--line); box-shadow: var(--shadow); }
   .site-nav.open { display: flex; }

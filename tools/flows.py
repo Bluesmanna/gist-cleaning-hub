@@ -26,6 +26,16 @@ def run(name, fn, pg):
         shot(pg, 'fail-' + name)
 
 
+# A real answer: the greeting is gone and the typing dots have been replaced (the live
+# assistant takes a few seconds).
+ANSWER = '.ai-msgs .bubble.assistant:not(:has(.typing))'
+
+
+def wait_answer(pg):
+    pg.wait_for_selector('.ai-msgs .bubble.user', timeout=5000)
+    pg.wait_for_selector(ANSWER, timeout=90000)
+
+
 def go(pg, path):
     pg.goto(BASE + '#/' + path)
     pg.wait_for_timeout(400)
@@ -98,7 +108,7 @@ def emp_stub_ai(pg):
     if not pg.locator('.modal').count():
         pg.get_by_role('button', name='View').first.click()
     click(pg, 'Explain')
-    pg.wait_for_selector('.modal .md', timeout=8000)
+    pg.wait_for_selector('.modal .md', timeout=90000)
     shot(pg, 'emp-stub-ai')
 
 
@@ -160,9 +170,14 @@ def assistant(pg):
     go(pg, 'app/assistant')
     pg.locator('.ai-input textarea').fill('What is the cancellation fee with 10 hours notice?')
     pg.keyboard.press('Enter')
-    pg.wait_for_selector('.ai-msgs .bubble.assistant >> nth=0', timeout=10000)
-    pg.wait_for_timeout(1500)
+    wait_answer(pg)
+    pg.wait_for_timeout(500)
     shot(pg, 'assistant')
+    if not pg.locator('.ai-head .t', has_text='Team Assistant').count():
+        raise Exception('owner did not get the team assistant')
+    note = ' '.join(pg.locator('.ai-msgs .note').all_inner_texts())
+    if 'unavailable' in note:
+        raise Exception('live assistant fell back: ' + note[:200])
 
 
 def client_pay(pg):
@@ -242,6 +257,22 @@ def sign_in(pg):
     shot(pg, 'sign-in-email')
 
 
+def header_buttons(pg):
+    """Website header: always 'Sign in' (never 'Open app'), plus a Get app link to the APK."""
+    for who in [None, 'Jamie']:
+        if who:
+            login(pg, who)
+        go(pg, '')
+        nav = pg.locator('.site-nav')
+        if nav.get_by_text('Open app').count() or not nav.get_by_role('link', name='Sign in').count():
+            raise Exception('header label wrong (signed in: %s)' % bool(who))
+        href = nav.locator('a.get-app').get_attribute('href') or ''
+        if not href.endswith('/releases/latest/download/gist-cleaning-hub.apk'):
+            raise Exception('Get app link wrong: ' + href)
+    shot(pg, 'header-buttons')
+    pg.get_by_role('button', name='Sign out').first.click() if pg.url.find('/app') >= 0 else None
+
+
 def docs_gated(pg):
     """Company docs are staff-only: hidden from visitors (route, footer, assistant) and clients."""
     def sign_out():
@@ -265,11 +296,13 @@ def docs_gated(pg):
     pg.locator('.ai-fab').click()
     pg.locator('.ai-input textarea').fill('What does the employee handbook say about supplies and the supply card?')
     pg.keyboard.press('Enter')
-    pg.wait_for_selector('.ai-msgs .bubble.assistant >> nth=0', timeout=10000)
-    pg.wait_for_timeout(800)
-    txt = ' '.join(pg.locator('.ai-msgs').all_inner_texts())
+    wait_answer(pg)
+    pg.wait_for_timeout(500)
+    if pg.locator('.ai-head .t', has_text='Team').count():
+        raise Exception('visitor got the team assistant')
+    chips = ' '.join(pg.locator('.ai-msgs .src').all_inner_texts())
     hrefs = pg.eval_on_selector_all('.ai-msgs a', 'els => els.map(e => e.getAttribute("href") || "")')
-    if 'Handbook' in txt.split('supply card?')[-1] or any('/app/docs' in h for h in hrefs):
+    if 'Handbook' in chips or any('/app/docs' in h for h in hrefs):
         raise Exception('visitor assistant quoted internal docs')
     shot(pg, 'docs-gated-visitor-ai')
     login(pg, 'Aspen')
@@ -287,7 +320,7 @@ with sync_playwright() as p:
     pg.on('dialog', lambda d: d.accept())
     go(pg, '')
     for f in [public_booking, emp_clock, emp_submit, emp_pto, emp_stub_ai, owner_approve, owner_payroll, owner_schedule, owner_booking,
-              owner_invoices, owner_message, assistant, client_pay, client_cancel, sign_in, docs_gated, mobile_overflow]:
+              owner_invoices, owner_message, assistant, client_pay, client_cancel, sign_in, header_buttons, docs_gated, mobile_overflow]:
         run(f.__name__, f, pg)
     b.close()
 for r in results:
