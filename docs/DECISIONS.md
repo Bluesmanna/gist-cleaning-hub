@@ -47,3 +47,4 @@ GIST's real logo, colors (navy + sage + soft yellow), fonts and photos from gist
 - **Capacitor 8** for Android instead of a separate native app: one codebase; native GPS, file saving and share sheet through plugins. An iOS build is the same project plus `npx cap add ios` on a Mac.
 - **No UI framework**: a small hand-written CSS design system (`index.css`) keeps the bundle small and matches GIST's look.
 - **GitHub Pages** hosting: free, HTTPS, deploys from the repo on every push (`.github/workflows/pages.yml`).
+- **Domain:** gistcleaninghub.com, registered at Porkbun ($11.81 for the first year, renews about $11/yr) and pointed at GitHub Pages (four A records, four AAAA records, `www` CNAME to bluesmanna.github.io; the `CNAME` file in the repo keeps Pages on it). It's deliberately not gistcleaning.com, which stays Dustin's real site; if he adopts the hub, it can move to a subdomain such as app.gistcleaning.com with one CNAME record.

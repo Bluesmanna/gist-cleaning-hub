@@ -4,7 +4,7 @@
 
 > Built by Robert (a GIST Residential Cleaning Tech) as a proof of concept for Dustin. It is **not** the official site — that's [gistcleaning.com](https://www.gistcleaning.com). Every client, address, paycheck and message in the demo is made up.
 
-**Try it:** **https://bluesmanna.github.io/gist-cleaning-hub/** · **Android APK:** [latest release](https://github.com/Bluesmanna/gist-cleaning-hub/releases/latest)
+**Try it:** **https://gistcleaninghub.com** (also at bluesmanna.github.io/gist-cleaning-hub) · **Android APK:** [latest release](https://github.com/Bluesmanna/gist-cleaning-hub/releases/latest)
 
 No sign-up. Open **Log in** and tap any demo person to see the app as them; switch people any time from the "Viewing as" menu at the top. Everything you do is saved in your own browser, and **Settings → Reset demo data** puts it back.
 
