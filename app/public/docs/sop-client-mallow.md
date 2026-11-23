@@ -1,0 +1,84 @@
+# STANDARD OPERATING PROCEDURES - 
+
+## **Mallow Household**
+
+### Client + Household Information
+
+**Name:** Gray + Harper Mallow (Indy + Jordan)  
+**Contact:** 208-555-0137  
+**Address:** 544 Syringa Way, Moscow, ID (demo address)  
+**Frequency:** Weekly  
+**Expected/Average Duration:** 2 hours  
+**Client Home, Y/N:** Client or client’s babysitter will often be home with toddler at beginning and/or end of visit; they try to be out as much as able  
+**Notes:** Front door sticks/is difficult; **make sure it is closed all the way** so cats do not get out
+
+### Security
+
+**Door Access:** Unlocked on arrival; if not unlocked, there is a second door in side yard giving garage access  
+**Locking Protocol:** None
+
+### Pets
+
+2 cats; shy and stay hidden while you clean, **indoor only** so do not let out
+
+### Preferences + Restrictions
+
+Use Bona fluid only on floors; use lower-scent cleaners wherever possible, toddler is scent-sensitive and can get extra fussy if house scent is strong/overwhelming
+
+### Supplies Available
+
+**Vacuum:** Yes; nice cordless Dyson, in kitchen  
+**Mop:** N/A  
+**Broom:** N/A  
+**Cleaners:** N/A
+
+### Tasks & Procedures
+
+#### Master Bathroom
+
+- [ ] Sink + Mirrors  
+  - [ ] Move & clean under items  
+- [ ] Shower  
+- [ ] Toilet  
+- [ ] Vacuum + Mop  
+- [ ] 
+
+#### Hall Bathroom
+
+- [ ] Sink + Mirror  
+  - [ ] If there are dental items, move and arrange neatly onto towel at side of sink  
+- [ ] Shower/Tub  
+  - [ ] Place any bath toys in the net pouches hanging on bath rim  
+- [ ] Toilet  
+- [ ] Vacuum + Mop
+
+#### Bedrooms + Halls
+
+- [ ] Dust + Polish  
+- [ ] Vacuum + Mop
+
+#### Living Room + Dining Room
+
+- [ ] Dust + Wipe  
+- [ ] Use glass cleaner on glass-pane end tables  
+- [ ] Vacuum + Mop  
+  - [ ] If any toys are on floor, place on coffee table or play mat (if down)  
+  - [ ] CLient may or may not put up play mat; if play mat is down, just clean around it
+
+#### Kitchen 
+
+- [ ] Counters  
+- [ ] Stove  
+  - [ ] Used often, prone to grease and buildup; use Comet and razor/scraper as necessary  
+- [ ] Sink  
+  - [ ] Move dish rack w/ clean dishes to counter  
+  - [ ] Use Comet to combat mineral buildup  
+- [ ] Fronts of appliances (fridge, stove, dishwasher, etc)  
+- [ ] Vacuum + Mop  
+- [ ] **1/quarter or as-needed:** fronts of cabinets
+
+#### Garage Entry
+
+- [ ] Dust + Wipe  
+- [ ] Vacuum + Mop  
+  - [ ] First, sake off cat litter mats and set aside. Use vacuum w/edger attachment to vacuum up litter, then replace mats. Vacuum and mop remaining floor as normal.

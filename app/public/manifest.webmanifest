@@ -1,0 +1,11 @@
+{
+  "name": "GIST Cleaning Hub",
+  "short_name": "GIST Hub",
+  "description": "GIST Cleaning — booking, schedules, time tracking, pay and docs in one app (concept prototype).",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFFDF0",
+  "theme_color": "#112F5B",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }, { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }, { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }]
+}

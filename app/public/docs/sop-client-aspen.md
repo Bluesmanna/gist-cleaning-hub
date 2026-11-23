@@ -1,0 +1,110 @@
+# STANDARD OPERATING PROCEDURES - 
+
+## **Aspen Household**
+
+### Client + Household Information
+
+**Name:** Alex Aspen  
+**Contact:** 208-555-0101  
+**Address:** 100 Lilac Ln, Moscow, ID (demo address)  
+**Frequency:** Weekly  
+**Expected/Average Duration:** ~3 hours  
+**Client Home, Y/N:** May be home on arrival, then leave and are gone for duration of cleaning.  
+**Notes:** Client has 4 children and homeschools, so children may be present off and on when you first arrive.   
+Dogs will be outside and roaming free when you arrive; they know to stay out of the way of cars, so even if they come towards you as you come up the drive, they will get out of the way. Regardless, exercise caution and slow to 10 mph or slower just to be safe.
+
+### Security
+
+**Door Access:** Unlocked on arrival  
+**Locking Protocol:** None
+
+### Pets
+
+4 dogs (2 black labs and 2 sheperd puppies); labs are very very friendly, puppies are very barky but not aggressive. Dogs should remain outside while you clean, but exercise caution as you enter as they may try to get past you & in the door. 
+
+### Preferences + Restrictions
+
+Skip vacuuming carpeted floors to remain within desired time limit, unless otherwise requested.
+
+### Supplies Available
+
+**Vacuum:**  Yes; stored in laundry room by rear entrance  
+**Mop:** N/A  
+**Broom:** N/A  
+**Cleaners:** Some may be available in the laundry room cabinets  
+Tasks & Procedures
+
+#### Master Bathroom
+
+- [ ] Sinks + Mirror  
+- [ ] Toilet  
+- [ ] Bathtub  
+  - [ ] Use vaccum wand and edger attachment to vacuum area around tub, then wipe clean as needed  
+- [ ] Shower  
+  - [ ] Remove items from shower and place on the ledge around the bathtub while cleaning shower  
+  - [ ] Use glass cleaner or all-purpose cleaner with a ***non-scratch*** pad for hard water and grime on inside of shower doors, then rinse if needed and wipe inside & out with glass cleaner.   
+  - [ ] *Hard water staining will never completely go away*, do not overscrub shower doors.  
+- [ ] Empty trash  
+- [ ] Shake and/or Vacuum area rugs, then set aside  
+- [ ] Vacuum + Mop
+
+#### Master Bedroom
+
+- [ ] Dust + Polish
+
+#### Hall Bathroom
+
+- [ ] Sink + Mirror  
+- [ ] Toilet  
+  - [ ] Toilet sees heavy use due to multiple children; make sure to detail around & under seat bracket and under toilet bowl lid, as well as around the base of the toilet, to reduce staining and urine odor  
+- [ ] Shower + Tub  
+  - [ ] Remove items from shower and place on sink while cleaning shower  
+- [ ] Shake and/or Vacuum area rugs, then set aside  
+- [ ] Vacuum + Mop
+
+#### Living Room
+
+- [ ] Dust + Wipe  
+  - [ ] Use all purpose cleaner to wipe down coffee table, as it accrues fingerprints and grime pretty quickly  
+- [ ] Clean glass on sliding door
+
+#### Rear Entry + Laundry Room
+
+- [ ] Wipe table as needed  
+- [ ] Dust windows + sills as needed  
+- [ ] Clean glass on exterior doors  
+- [ ] Vacuum + Mop
+
+#### Kitchen + Pantry
+
+- [ ] Counters  
+- [ ] Stovetop  
+- [ ] Sink + Surrounding area  
+  - [ ] Rinse + stack any dishes left in the sink on the counter next to it  
+  - [ ] Move and wipe under potted plants and kitchen accessories as needed  
+  - [ ] Use Comet for sink and faucet  
+  - [ ] Yes, the drain always smells like that. Neither god nor man can do anything about it.  
+- [ ] Clean out microwave  
+- [ ] Wipe down appliance surfaces (dishwasher, fridge, coffee maker, toaster, etc) as needed  
+- [ ] Vacuum + Mop
+
+#### Dining Room
+
+- [ ] Wipe down table  
+- [ ] Dust + Polish  
+- [ ] Vacuum + Mop
+
+#### Study/Foyer
+
+- [ ] Dust + polish bookshelves  
+- [ ] Dust + polish study nook  
+  - [ ] Any toys on the floor under study nook can be placed on the counter  
+  - [ ] Any trash on the floor under study nook can be placed in the trash can  
+- [ ] Vacuum + Mop
+
+#### Front Entry
+
+- [ ] Clean glass on front door  
+- [ ] Vacuum + Mop  
+  - [ ] First vacuum area rug; then, flip area rug over onto carpet just beyond entryway and also vacuum underside.  
+  - [ ] Vacuum + mop rest of floor as usual, replacing area rug before you leave

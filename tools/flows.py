@@ -1,0 +1,228 @@
+"""End-to-end workflow test of the demo in headless Chrome. Each step prints OK / ERR / FAIL.
+Usage: python tools/flows.py [base_url] [screenshot_dir]"""
+import os
+import sys
+
+from playwright.sync_api import sync_playwright
+
+BASE = sys.argv[1] if len(sys.argv) > 1 else 'http://127.0.0.1:4173/'
+SHOTS = sys.argv[2] if len(sys.argv) > 2 else '.'
+os.makedirs(SHOTS, exist_ok=True)
+results = []
+errs = []
+
+
+def shot(pg, name):
+    pg.screenshot(path=os.path.join(SHOTS, name + '.png'))
+
+
+def run(name, fn, pg):
+    errs.clear()
+    try:
+        fn(pg)
+        results.append(('OK' if not errs else 'ERR', name, errs[:2]))
+    except Exception as e:  # noqa: BLE001 - report and continue
+        results.append(('FAIL', name, [str(e).splitlines()[0][:300]] + errs[:2]))
+        shot(pg, 'fail-' + name)
+
+
+def go(pg, path):
+    pg.goto(BASE + '#/' + path)
+    pg.wait_for_timeout(400)
+
+
+def login(pg, who):
+    go(pg, 'login')
+    pg.reload()
+    pg.wait_for_timeout(500)
+    pg.locator('button.btn.block', has_text=who).first.click()
+    pg.wait_for_timeout(500)
+
+
+def click(pg, text, scope=None, exact=False):
+    (scope or pg).get_by_role('button', name=text, exact=exact).first.click()
+    pg.wait_for_timeout(350)
+
+
+def toast_has(pg, text):
+    pg.wait_for_selector(f'.toast:has-text("{text}")', timeout=4000)
+
+
+def public_booking(pg):
+    go(pg, 'book')
+    form = pg.locator('form').last
+    for inp in form.locator('input[required], textarea[required]').all():
+        t = inp.get_attribute('type') or 'text'
+        if t == 'date':
+            continue
+        inp.fill('test@example.com' if t == 'email' else '208-555-0100' if t == 'tel' else 'Flow Test Person')
+    click(pg, 'Send request')
+    pg.wait_for_selector('text=/thank|received|got it|request sent/i', timeout=4000)
+    shot(pg, 'public-booked')
+
+
+def emp_clock(pg):
+    login(pg, 'Jamie')
+    go(pg, 'app')
+    if pg.get_by_role('button', name='Clock in').count():
+        click(pg, 'Clock in')
+        pg.wait_for_timeout(1500)
+        click(pg, 'Clock out')
+        pg.wait_for_timeout(1500)
+    shot(pg, 'emp-dashboard')
+
+
+def emp_submit(pg):
+    go(pg, 'app/time')
+    b = pg.get_by_role('button', name='Submit hours')
+    if b.count() and b.first.is_enabled():
+        b.first.click()
+        pg.wait_for_timeout(600)
+    shot(pg, 'emp-time')
+
+
+def emp_pto(pg):
+    go(pg, 'app/time-off')
+    f = pg.locator('form').first
+    f.locator('input[required]').last.fill('Flow test day off')
+    click(pg, 'Send request', f)
+
+
+def emp_stub_ai(pg):
+    go(pg, 'app/pay')
+    pg.locator('.list-item').filter(has_text='$').first.click()
+    pg.wait_for_timeout(500)
+    if not pg.locator('.modal').count():
+        pg.get_by_role('button', name='View').first.click()
+    click(pg, 'Explain')
+    pg.wait_for_selector('.modal .md', timeout=8000)
+    shot(pg, 'emp-stub-ai')
+
+
+def owner_approve(pg):
+    login(pg, 'Dustin')
+    go(pg, 'app/approvals')
+    while pg.get_by_role('button', name='Approve all').count():
+        click(pg, 'Approve all')
+    pg.get_by_role('tab', name='Time off').first.click()
+    pg.wait_for_timeout(300)
+    while pg.get_by_role('button', name='Approve', exact=True).count():
+        click(pg, 'Approve', exact=True)
+
+
+def owner_payroll(pg):
+    go(pg, 'app/payroll')
+    shot(pg, 'owner-payroll')
+    b = pg.get_by_role('button', name='Process payroll')
+    if not (b.count() and b.first.is_enabled()):
+        raise Exception('Process payroll button missing or disabled')
+    b.first.click()
+    toast_has(pg, 'Payroll processed')
+
+
+def owner_schedule(pg):
+    go(pg, 'app/schedule')
+    click(pg, 'Add shift')
+    pg.locator('.modal').get_by_role('button', name='Save').click()
+    toast_has(pg, 'Shift saved')
+    pg.wait_for_timeout(300)
+    click(pg, 'Publish')
+    shot(pg, 'owner-schedule')
+
+
+def owner_booking(pg):
+    go(pg, 'app/bookings')
+    click(pg, 'Make client & schedule')
+    pg.wait_for_url('**/app/clients/*', timeout=4000)
+
+
+def owner_invoices(pg):
+    go(pg, 'app/invoices')
+    click(pg, 'Invoice completed cleanings')
+    pg.locator('.modal button.sage').last.click()
+    pg.wait_for_timeout(500)
+    shot(pg, 'owner-invoices')
+
+
+def owner_message(pg):
+    go(pg, 'app/messages')
+    pg.locator('.msg-layout .list-item').first.click()
+    pg.wait_for_timeout(300)
+    pg.locator('.chat-card textarea').first.fill('Flow test message')
+    pg.keyboard.press('Enter')
+    pg.wait_for_selector('.bubble:has-text("Flow test message")', timeout=3000)
+
+
+def assistant(pg):
+    go(pg, 'app/assistant')
+    pg.locator('.ai-input textarea').fill('What is the cancellation fee with 10 hours notice?')
+    pg.keyboard.press('Enter')
+    pg.wait_for_selector('.ai-msgs .bubble.assistant >> nth=0', timeout=10000)
+    pg.wait_for_timeout(1500)
+    shot(pg, 'assistant')
+
+
+def client_pay(pg):
+    login(pg, 'Aspen')
+    go(pg, 'app/invoices')
+    b = pg.get_by_role('button', name='Pay', exact=True)
+    if not b.count():
+        raise Exception('no open invoice to pay')
+    b.first.click()
+    pg.wait_for_timeout(300)
+    click(pg, 'I paid with venmo')
+    toast_has(pg, 'Marked paid')
+
+
+def client_cancel(pg):
+    go(pg, 'app/visits')
+    click(pg, 'Cancel / reschedule')
+    shot(pg, 'client-cancel')
+    pg.locator('.modal').get_by_role('button', name='Cancel visit').click()
+    toast_has(pg, 'Visit cancelled')
+
+
+def mobile_overflow(pg):
+    pg.set_viewport_size({'width': 390, 'height': 844})
+    bad = []
+    width = '() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]'
+    plan = [
+        ('Dustin', ['app', 'app/schedule', 'app/payroll', 'app/approvals', 'app/clients', 'app/invoices', 'app/reports', 'app/messages', 'app/settings', 'app/team/u_jamie']),
+        ('Jamie', ['app', 'app/schedule', 'app/time', 'app/pay', 'app/onboarding', 'app/expenses', 'app/docs/sop-general']),
+        ('Aspen', ['app', 'app/visits', 'app/invoices', 'app/preferences', 'app/messages']),
+    ]
+    for who, routes in plan:
+        login(pg, who)
+        for r in routes:
+            go(pg, r)
+            w = pg.evaluate(width)
+            if w[0] > w[1] + 2:
+                bad.append(f'{who}:{r} {w}')
+    for r in ['', 'services', 'pricing', 'book', 'docs', 'about', 'organization', 'careers']:
+        go(pg, r)
+        w = pg.evaluate(width)
+        if w[0] > w[1] + 2:
+            bad.append(f'public:{r} {w}')
+    login(pg, 'Jamie')
+    go(pg, 'app')
+    shot(pg, 'mobile-emp')
+    go(pg, '')
+    shot(pg, 'mobile-home')
+    if bad:
+        raise Exception('horizontal overflow: ' + '; '.join(bad))
+
+
+with sync_playwright() as p:
+    b = p.chromium.launch(channel='chrome', headless=True)
+    ctx = b.new_context(viewport={'width': 1280, 'height': 900}, geolocation={'latitude': 46.73, 'longitude': -117.0}, permissions=['geolocation'])
+    pg = ctx.new_page()
+    pg.on('console', lambda m: m.type == 'error' and errs.append(m.text[:200]))
+    pg.on('pageerror', lambda e: errs.append('PAGEERROR ' + str(e)[:200]))
+    pg.on('dialog', lambda d: d.accept())
+    go(pg, '')
+    for f in [public_booking, emp_clock, emp_submit, emp_pto, emp_stub_ai, owner_approve, owner_payroll, owner_schedule, owner_booking,
+              owner_invoices, owner_message, assistant, client_pay, client_cancel, mobile_overflow]:
+        run(f.__name__, f, pg)
+    b.close()
+for r in results:
+    print(*r)

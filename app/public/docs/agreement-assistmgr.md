@@ -1,0 +1,211 @@
+# **EMPLOYMENT AGREEMENT**
+
+**Assistant Manager**
+
+This Employment Agreement (“Agreement”) is entered into as of the agreed-upon start date of **\[DATE\]**, by and between **GIST Cleaning,** a division of Sipes Enterprises, LLC (hereafter referred to as “Employer”) and **\[EMPLOYEE NAME\]** (hereafter referred to as “Employee”).
+
+---
+
+## **1\. Employment Relationship**
+
+The Employer hires the Employee as a **W-2 employee**, not as an independent contractor. Pursuant to Idaho law, as a “right-to-work” state, employment is **at-will**, meaning either the Employer or the Employee may end the employment relationship at any time, with or without cause or notice. Nothing in this Agreement creates a contract for a specific length of time or guarantees continued employment. 
+
+All work is performed in the State of Idaho, and employment is governed by Idaho and applicable federal law.
+
+---
+
+## **2\. Position & Job Duties**
+
+The Employee is hired in the position of **Assistant Manager**.
+
+The Employee’s primary duties include, but are not limited to:
+
+* Sending daily invoices to clients.  
+* Using the company’s designated payroll and time tracking software(s) to view employee time cards.   
+* Communicating with employees to clarify any corrections, errors or discrepancies in their logged hours as needed for invoicing purposes.   
+* Responding to new client inquiries. This may include:   
+  * Communicating procedures for setting up service to the client;   
+  * Coordinating and scheduling consultations for new clients;   
+  * Performing walkthrough consultations on an as-needed basis.  
+* 
+
+*For detailed information regarding job duties, please refer to your Employee Handbook, section 2\.*
+
+---
+
+## **3\. Work Schedule & Hours**
+
+The Employee is expected to work approximately **5-7 hours per week**. Work hours may vary based on client demand, scheduling needs, and business conditions.
+
+Additional hours may be offered by mutual agreement but are not guaranteed.
+
+*For more detailed information regarding scheduling and timeliness, please consult your Employee Handbook, section 4\.*
+
+---
+
+## **4\. Compensation**
+
+The Employee will be paid **\$25.00 per hour**, paid on a **bimonthly** basis through payroll. There is a probationary period and structured opportunities for raises, as outlined below:
+
+* The first **three (3) weeks** of employment are considered a probationary period. If performance or compatibility with the company’s standards are deemed substantially insufficient at the end of this period, or if the Employee violates company policies, the Employer may decide to terminate the Employee.  
+* Performance reviews may occur every **six (6) months**, with the potential for raises.
+
+All raises are **discretionary**, based on performance, reliability, client feedback, and business needs, and are not guaranteed.
+
+Overtime will be paid at **one and one-half (1.5) times** the Employee’s regular hourly rate for all hours worked over **40 hours in a workweek**, in accordance with federal and Idaho law.
+
+Paid time off is accrued at a rate of **1 hour per 25 hours worked**. *For more detailed information on acceptable use of PTO, please refer to your Employee Handbook, section 5\.*
+
+---
+
+## **5\. Timekeeping & Payroll Practices**
+
+The Employee must accurately record all hours worked in a timely fashion using the timekeeping system provided and outlined by the Employer. Working “off the clock” is not permitted. Transportation time to and from client’s homes is not included in paid hours.
+
+Falsifying time records, failing to accurately report hours worked, or chronic failure to record hours in a timely fashion may result in disciplinary action, up to and including termination.
+
+*For more detailed information on timekeeping practices and policies, please refer to your Employee Handbook, section 5\.*
+
+---
+
+## **6\. Supplies, Equipment & Expenses**
+
+The Employee is responsible for:
+
+* Reliable transportation to and from job sites  
+* A personal phone for scheduling and communication purposes  
+* A functional computer for the purposes of utilizing company software and email.
+
+---
+
+## **7\. Safety & Training**
+
+The Employer will provide basic training as needed related to job-related procedures, applicable software, general best practices, and client communications.
+
+The Employee agrees to:
+
+* Follow all procedural and safety instructions  
+* Consider ergonomics when performing duties in the home or office environment  
+* Report any injuries, accidents, or unsafe conditions immediately
+
+Failure to follow safety procedures, or neglect of client needs and preferences, may result in disciplinary action.
+
+---
+
+## **8\. Confidentiality & Client Privacy**
+
+The Employee will have access to private homes and personal client information. The Employee agrees to maintain strict confidentiality and client safety protocols, including but not limited to:
+
+* Not sharing client names, addresses, schedules, or personal information   
+  * Exceptions are limited to the Employer, or other Employees as necessary for shift coverage and agreed upon by the Employer  
+* Not discussing or disclosing what is seen inside client homes  
+  * Exceptions are limited to:  
+    * Evidence of illegal activity that imminently or potentially endangers the Employee and/or residents of the home; or  
+    * Occurrences that make the Employee feel unsafe while working in a client’s home  
+  * If either of these Exceptions occur, the Employee is to reach out to the Employer directly and immediately, and allow the Employer to act upon the information provided at their discretion.  
+* Not taking photos or videos inside client homes  
+  * Exceptions are limited to:  
+    * Photos taken with express, signed client consent and approval by the Employer, to be used for promotional materials; or  
+    * Photos taken for liability purposes, such as an accident involving employee injury or damaged property  
+* Not using client property, devices, or internet without permission  
+* Maintaining the location, security, and confidentiality of all client keys and access codes at all times.
+
+This obligation continues **during and after employment**.
+
+---
+
+## **9\. Standards of Conduct**
+
+The Employee agrees to maintain professional behavior at all times, including:
+
+* No theft, dishonesty, or misuse of client or company property  
+* No use of drugs or alcohol during work hours, or intoxication while on shift  
+* Respectful communication with clients and coworkers  
+* Following company policies and instructions
+
+*For more detailed information regarding acceptable and unacceptable conduct, please refer to your Employer Handbook, section 6\.*
+
+Violations may result in disciplinary action or immediate termination.
+
+---
+
+## **10\. Substance Use Policy**
+
+The Employer reserves the right to drug test the Employee if it is deemed necessary by GIST management in response to client complaints, suspicious activity, or problematic behavior that may indicate potential substance usage and/or intoxication while on shift. The Employee reserves the right to refuse said drug testing, with the understanding that doing say may result in immediate termination of employment.
+
+If the Employee is found by an administered drug test to be using illicit or intoxicating substances, and there is reasonable suspicion of the Employee being intoxicated while on shift, the Employee may be immediately terminated.
+
+*For more detailed information regarding substance use, please refer to your Employee Handbook, section 6\.*
+
+---
+
+## **11\. Background Check**
+
+As a condition of employment, the Employee consents to a background check. Costs for said background check will be covered by the Employer. 
+
+---
+
+## **12\. Termination of Employment**
+
+Because employment is at-will, either party may terminate employment at any time. If the Employee plans to terminate their employment, a minimum of two weeks’ notice is requested by the Employer for purposes of hiring a replacement. A minimum of four weeks is preferable for purposes of ensuring proper training for said replacement. 
+
+***If a minimum of two weeks’ notice is given,*** any unused PTO balance will be added to the Employee’s final paycheck. ***The employee must attend their shifts from the time of notice*** until the time of their termination as a condition of claiming unused PTO. If a minimum of two weeks’ notice is not given, and/or the Employee does not attend their shifts until the time of their termination, ***no unused PTO will be paid to the Employee.***
+
+Immediate termination by the Employer may occur for serious misconduct, including but not limited to:
+
+* Theft  
+* Falsifying records  
+* Breach of confidentiality  
+* Unsafe or inappropriate behavior  
+* Harassment or discrimination  
+* Violation of company policies
+
+---
+
+## **13\. Employee Handbook**
+
+The Employee agrees to read the Employee Handbook in its entirety for a thorough understanding of company policies and procedures. The Employee also agrees to sign the Employee Handbook, stating that they understand and agree to the policies and procedures stated therein, as part of the Employment Agreement. For legal purposes, the Employee Handbook is considered an addendum to this contract. 
+
+---
+
+## **14\. Compliance With Law**
+
+Both the Employer and Employee agree to comply with all applicable **federal, Idaho state, and local employment laws**, including wage and hour laws, workplace safety requirements, and anti-discrimination laws.
+
+---
+
+## **15\. Entire Agreement**
+
+This Agreement, including the Employee Handbook addendum, represents the entire understanding between the parties and may only be modified by the Employer. The Employee will be notified of any modifications made and will be asked to sign said changes into writing. 
+
+If the Employee has any objections to changes made to this Agreement, they may inform the Employer before signing and the Employer may take these objections under advisement. If the Employee refuses to sign the updated Agreement, with or without changes made in regard to objections, they acknowledge that they are forfeiting their employed position with GIST Cleaning.
+
+---
+
+## **16\. Acknowledgment & Signatures**
+
+By signing below, the Employee acknowledges that they have read, understand, and agree to the terms of this Agreement. Once signed, this Agreement serves as a legally binding Contract.
+
+**Employee:**  
+Signature: 
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
+ 
+
+Printed Name: 
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
+ 
+
+Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+**Employer:**  
+Signature: 
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+Name & Title: 
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_

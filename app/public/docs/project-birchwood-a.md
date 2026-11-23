@@ -1,0 +1,125 @@
+# PROJECT TASK LIST -
+
+## **Birchwood A. Household**
+
+### Client + Household Information
+
+**Name:** Birchwood Aspen  
+**Contact:** 208-555-0188  
+**Address:** 1173 Silo St, Moscow, ID (demo address)  
+**Estimated Duration + Schedule:** 12-16 hours.  
+**Client Home, Y/N:** No, client has moved out and is preparing to turn the home into a rental.  
+**Notes:**
+
+### Security
+
+**Door Access:** Keypad code **0000#** *(demo — real access details are only in the private pack)*  
+**Locking Protocol:** Lock on keypad when you leave
+
+### Pets
+
+None
+
+### Preferences + Restrictions
+
+### Supplies Available
+
+**Vacuum:** No  
+**Mop:** No  
+**Broom:** N/A  
+**Cleaners:** No
+
+## TASKS
+
+### **GENERAL/ALL ROOMS**
+
+***Perform these tasks in all rooms + areas accessible.***
+
+- [ ] Floors  
+  - [ ] Vacuum  
+  - [ ] Mop, where applicable  
+- [ ] Dust + remove cobwebs  
+- [ ] Windows  
+  - [ ] Inside of glass  
+  - [ ] Window tracks  
+  - [ ] Window sills  
+- [ ] Doors (spot-clean as needed with magic eraser)
+
+***If time after all other rooms and tasks are done:***
+
+- [ ] Baseboards, Moulding + Railings as needed  
+- [ ] Walls (spot-clean as needed with magic eraser)
+
+### **MAIN FLOOR**
+
+#### Entry/Dining/Living Room
+
+- [ ] Sliding door glass  
+- [ ] Dust inside of light fixtures
+
+#### Kitchen
+
+- [ ] Counters  
+- [ ] Cabinets and drawers, fronts and insides  
+- [ ] Sink & surrounding area  
+  - [ ] Utilize appropriate cleaner to remove as much hard water as reasonably able  
+- [ ] Microwave  
+  - [ ] Interior and Exterior  
+- [ ] Oven  
+  - [ ] Interior and Exterior  
+    - [ ] Oven cleaner will be provided. *Use proper ventilation and safety equipment.*   
+- [ ] Fridge + freezer, inside and out  
+- [ ] Microwave, inside and out
+
+#### Bathroom
+
+- [ ] Sinks + Counters  
+  - [ ] Wipe/scrub/rinse  
+  - [ ] Wipe down fronts + insides of drawers and cabinets   
+- [ ] Toilet + surrounding area  
+- [ ] Dust shelves in closet  
+- [ ] Pull out and clean behind washer/dryer (if too difficult to move, call or text Dustin.)
+
+### **UPSTAIRS**
+
+#### Stairs + Landing
+
+- [ ] Vacuum  
+- [ ] Clean inside light fixtures (if too high/uncomfortable with ladder, call or text Dustin.)
+
+#### Hall
+
+- [ ] Vacuum/wipe vent grates
+
+#### Long Room
+
+- [ ] Dust tops of fan blades  
+- [ ] Dust/wipe down/magic erase cabinets and cubbies as needed
+
+#### Bedrooms
+
+- [ ] Dust/wipe shelves and bars in closets
+
+#### Hall Bathroom
+
+- [ ] Shower  
+- [ ] Toilet + surrounding area  
+- [ ] Dust shelves  
+- [ ] Sink + Counter  
+  - [ ] Inside/outside cabinets and counters  
+  - [ ] Mirrors  
+  - [ ] Light fixtures
+
+#### Master Bedroom
+
+- [ ] Dust/wipe down/magic erase cabinets and cubbies in closet
+
+#### Master Bathroom
+
+- [ ] Shower  
+- [ ] Toilet + surrounding area  
+- [ ] Dust shelves  
+- [ ] Sink + Counter  
+  - [ ] Inside/outside cabinets and counters  
+  - [ ] Mirrors  
+  - [ ] Light fixtures

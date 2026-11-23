@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.local
+.env
+.env.*
+*.log
+# Android build output (the project itself is committed)
+app/android/.gradle/
+app/android/build/
+app/android/app/build/
+app/android/local.properties
+app/android/.idea/
+*.keystore
+*.jks
+# test screenshots
+shots/
+__pycache__/

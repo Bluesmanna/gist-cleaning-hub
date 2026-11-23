@@ -1,0 +1,93 @@
+# STANDARD OPERATING PROCEDURES - 
+
+## **Ironwood Household**
+
+### Client + Household Information
+
+**Name:** Rowan Ironwood  
+**Contact:** 208-555-0125  
+**Address:** 396 Palouse View Dr, Moscow, ID (demo address)  
+**Frequency:** Biweekly  
+**Expected/Average Duration:** 2 hours  
+**Client Home, Y/N:** No; client is home by around 12:15 and prefers if we are done and out by then.  
+**Notes: *Client requests we do not exceed 2 hours***.  
+Dogs will often be sequestered in laundry room downstairs; ignore and do not clean laundry room.  
+**High pet-hair household**
+
+### Security
+
+**Door Access:** Unlocked on arrival  
+**Locking Protocol:** None
+
+### Pets
+
+2 dogs; no interaction, either contained or absent with client during cleaning hours
+
+### Preferences + Restrictions
+
+None
+
+### Supplies Available
+
+**Vacuum:** N/A  
+**Mop:** N/A  
+**Broom:** N/A  
+**Cleaners:** N/A
+
+### Tasks & Procedures
+
+#### **UPSTAIRS**
+
+#### Back Bedrooms (2x) + Hall
+
+- [ ] Dust + Polish  
+- [ ] Vacuum
+
+#### Bathroom
+
+- [ ] Sink + Mirror  
+- [ ] Toilet  
+- [ ] Shower (as-needed only)  
+- [ ] Vacuum + Mop
+
+#### Kitchen + Dining Room
+
+- [ ] Counters + Table  
+  - [ ] Dry-wipe with duster or cloth to remove dog hair before spraying and cleaning  
+  - [ ] Polish table   
+- [ ] Sink  
+  - [ ] Use Comet as needed, wipe/rinse and dry, then polish  
+- [ ] Stovetop  
+- [ ] Microwave, as-needed  
+- [ ] Fronts of appliances (dishwasher, fridge, stove) as-needed  
+- [ ] Glass on sliding door and kitchen window above sink  
+- [ ] Vacuum & Mop
+
+#### **MAIN FLOOR**
+
+#### Stairs (Up and Down)
+
+- [ ] Vacuum  
+  - [ ] Be sure to use edger attachment to dig into seams and corners, as dog hair tends to build up and compact there
+
+#### Living Room + Entry Pad
+
+- [ ] Dust + Polish  
+  - [ ] Use duster for glass top on entertainment center, glass cleaner if needed  
+- [ ] Vacuum  
+- [ ] **If you have time:** vacuum upholstery as available
+
+#### **DOWNSTAIRS**
+
+#### Bedrooms (2x)
+
+- [ ] Dust + Polish  
+- [ ] Vacuum
+
+#### Bathroom
+
+- [ ] Sink + Mirror  
+- [ ] Toilet  
+- [ ] Shower  
+  - [ ] Remove + clean under accessory basket, set beside shower  
+- [ ] Vacuum + Mop

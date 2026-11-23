@@ -1,0 +1,106 @@
+# STANDARD OPERATING PROCEDURES - 
+
+## **Huckleberry Household**
+
+### Client + Household Information
+
+**Name:** Parker Huckleberry  
+**Contact:** 208-555-0176  
+**Address:** 1025 Bluebunch St, Moscow, ID (demo address)  
+**Frequency:** Biweekly  
+**Expected/Average Duration:** ~2.5 hours  
+**Client Home, Y/N:** Clients will occasionally be home  
+**Notes:**
+
+### Security
+
+**Door Access:** Keypad code **0000#** *(demo — real access details are only in the private pack)*  
+**Locking Protocol:** Lock keypad upon exit
+
+### Pets
+
+One dog; will often be kenneled in master bedroom.
+
+### Preferences + Restrictions
+
+Do not need to deep clean unless specified; should be able to complete basic cleaning in 2-2.5 hours.   
+Do not clean bedrooms.
+
+### Supplies Available
+
+**Vacuum:**  No  
+**Mop:** N/A  
+**Broom:** N/A  
+**Cleaners:** N/A
+
+### Tasks & Procedures
+
+### **MAIN FLOOR**
+
+#### Entry
+
+- [ ] Dust  
+- [ ] Vacuum + Mop
+
+#### Entry Hall Bathroom
+
+- [ ] Sink + Mirror  
+- [ ] Toilet  
+- [ ] Vacuum + Mop
+
+#### TV/Living Room
+
+- [ ] Dust + Wipe  
+- [ ] Vacuum
+
+#### Sitting Room
+
+- [ ] Dust + Wipe  
+- [ ] Polish wood furniture  
+- [ ] Clean large windows as needed  
+- [ ] Vacuum
+
+#### Dining Room
+
+- [ ] Dust + Wipe  
+- [ ] Clean sliding glass doors  
+- [ ] Vacuum
+
+#### Kitchen + Pantry
+
+- [ ] Counters  
+- [ ] Stovetop  
+- [ ] Sink + Surrounding area  
+- [ ] Clean out microwave  
+- [ ] Fronts of appliances  
+- [ ] Vacuum + Mop
+
+#### Bathroom
+
+- [ ] Sink + Mirror  
+- [ ] Toilet  
+- [ ] Bathtub  
+- [ ] Vacuum + Mop
+
+### **UPSTAIRS**
+
+#### Stairs & Hallway
+
+- [ ] Dust  
+- [ ] Vacuum + Mop
+
+#### Hall Bathroom
+
+- [ ] Sink + Mirror  
+- [ ] Toilet  
+- [ ] Shower  
+- [ ] Dust/wipe cabinets as needed  
+- [ ] Vacuum + Mop
+
+#### Master Bathroom
+
+- [ ] Sink + Mirror  
+- [ ] Toilet  
+- [ ] Shower  
+- [ ] Dust/wipe cabinets as needed  
+- [ ] Vacuum + Mop
