@@ -15,3 +15,4 @@ app/android/.idea/
 # test screenshots
 shots/
 __pycache__/
+smoke-last.png
