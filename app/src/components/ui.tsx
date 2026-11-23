@@ -22,8 +22,14 @@ export function Logo({ small, to = '/' }: { small?: boolean; to?: string }) {
 export function DemoBanner() {
   return (
     <div className="demo-banner no-print" role="note">
-      Concept prototype built by Robert for GIST Cleaning — not the official site (that’s{' '}
-      <a href={COMPANY.website} target="_blank" rel="noreferrer">gistcleaning.com</a>). Client and pay data here are made up.
+      <span className="long">
+        Concept prototype built by Robert for GIST Cleaning — not the official site (that’s{' '}
+        <a href={COMPANY.website} target="_blank" rel="noreferrer">gistcleaning.com</a>). Client and pay data here are made up.
+      </span>
+      <span className="short">
+        Concept prototype by Robert, demo data — official site:{' '}
+        <a href={COMPANY.website} target="_blank" rel="noreferrer">gistcleaning.com</a>
+      </span>
     </div>
   )
 }

@@ -336,6 +336,11 @@ export function AppLayout({ title }: { title?: ReactNode }) {
               </span>
               <h1 className="grow">{title ?? current?.label ?? 'GIST'}</h1>
               <RoleSwitcher />
+              {narrow && !onAssistant && (
+                <button className="icon-btn no-print" onClick={() => setAi(true)} aria-label="Ask the GIST assistant" title="Ask the GIST assistant">
+                  <Sparkles size={20} />
+                </button>
+              )}
               <Notifications />
             </div>
           </header>
@@ -387,7 +392,7 @@ export function AppLayout({ title }: { title?: ReactNode }) {
           </div>
         </Modal>
       )}
-      {!ai && !onAssistant && (
+      {!ai && !onAssistant && !narrow && (
         <button className="ai-fab no-print" onClick={() => setAi(true)} aria-label="Ask the GIST assistant" title="Ask the GIST assistant">
           <Sparkles size={24} />
         </button>
