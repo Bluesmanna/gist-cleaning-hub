@@ -8,7 +8,8 @@ import type { Client, Expense, Invoice, Shift, State, TimeEntry, User } from './
 import { addDays, isoAt, parseYmd, shiftHours, today, ymd } from './dates'
 import { POLICY, computeStub, periodFor, prevPeriod, r2 } from './payroll'
 
-export const STATE_VERSION = 3
+import { STATE_VERSION } from './version'
+export { STATE_VERSION }
 
 function rng(seed: number) {
   let a = seed

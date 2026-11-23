@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom'
 import { Copy, Send, Sparkles, Trash2, X } from 'lucide-react'
 import { useStore } from '../lib/store'
 import { ask, type AiMessage, type AiRequest, type AiResult, type AiTask } from '../lib/ai/provider'
-import { Markdown, Modal } from './ui'
+import { Modal } from './ui'
+import { Markdown } from './Markdown'
 import { useBackClose } from '../lib/back'
 
 interface Turn extends AiMessage {

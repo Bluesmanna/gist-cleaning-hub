@@ -8,7 +8,8 @@ import { DOCS, DOC_CATEGORIES, docBySlug, docFileUrl, importPack, loadPack, onPa
 import { base64ToBlob, saveBlob, saveText, saveUrl } from '../lib/download'
 import { fmtDateTime } from '../lib/dates'
 import { AiButton } from '../components/AiChat'
-import { Badge, Empty, Markdown, Modal, Tabs } from '../components/ui'
+import { Badge, Empty, Modal, Tabs } from '../components/ui'
+import { Markdown } from '../components/Markdown'
 
 export function usePack() {
   const [pack, setPack] = useState<Map<string, PackDoc>>(new Map())

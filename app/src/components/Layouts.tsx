@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { lazy, Suspense, useEffect, useState, type ReactNode } from 'react'
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import {
   Bell, BookOpen, Briefcase, Calendar, CalendarCheck, CalendarClock, CheckSquare, Clock, CreditCard, DollarSign, FileText, Home,
@@ -8,7 +8,8 @@ import {
 import { useStore } from '../lib/store'
 import { COMPANY } from '../data/site'
 import { relTime } from '../lib/dates'
-import { AiChat } from './AiChat'
+// The assistant (and its knowledge base) downloads the first time someone opens it.
+const AiChat = lazy(() => import('./AiChat').then((m) => ({ default: m.AiChat })))
 import { useBackClose } from '../lib/back'
 import { Avatar, DemoBanner, Logo, Modal } from './ui'
 
@@ -118,7 +119,7 @@ export function PublicLayout() {
           <Sparkles size={24} />
         </button>
       )}
-      {ai && <AiChat onClose={() => setAi(false)} />}
+      {ai && <Suspense fallback={null}><AiChat onClose={() => setAi(false)} /></Suspense>}
       {toastMsg && <div className="toast" role="status">{toastMsg}</div>}
     </>
   )
@@ -402,7 +403,7 @@ export function AppLayout({ title }: { title?: ReactNode }) {
           <Sparkles size={24} />
         </button>
       )}
-      {ai && <AiChat onClose={() => setAi(false)} />}
+      {ai && <Suspense fallback={null}><AiChat onClose={() => setAi(false)} /></Suspense>}
       {toastMsg && <div className="toast" role="status">{toastMsg}</div>}
     </div>
   )

@@ -5,7 +5,9 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { get, set } from 'idb-keyval'
 import type { Role, State, User } from './types'
-import { STATE_VERSION, seed } from './seed'
+import { STATE_VERSION } from './version'
+// The demo seed (and the docs it builds clients from) loads only when there's no saved data.
+const freshSeed = () => import('./seed').then((m) => m.seed())
 import { uid } from './dates'
 
 const KEY = 'gist-hub-state'
@@ -39,7 +41,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       } catch {
         s = undefined
       }
-      if (!s || s.version !== STATE_VERSION) s = seed()
+      if (!s || s.version !== STATE_VERSION) s = await freshSeed()
       if (alive) setState(s)
     })()
     return () => {
@@ -76,9 +78,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       update,
       setUser: (id) => update((d) => void (d.currentUserId = id)),
       reset: () => {
-        const s = seed()
-        s.currentUserId = state.currentUserId
-        setState(s)
+        const keep = state.currentUserId
+        freshSeed().then((s) => setState({ ...s, currentUserId: keep }))
       },
       replace: (s) => setState(s),
       notify: (d, userId, text, link) => {

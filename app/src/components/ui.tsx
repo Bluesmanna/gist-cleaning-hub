@@ -2,8 +2,6 @@
 // react-markdown so the bundle stays light on phones.
 import { useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import { ChevronLeft, ChevronRight, Inbox, X } from 'lucide-react'
 import { COMPANY, IMAGES } from '../data/site'
 import { useBackClose } from '../lib/back'
@@ -152,34 +150,6 @@ export function DateBox({ date }: { date: string }) {
   )
 }
 
-export function Markdown({ md, onLink }: { md: string; onLink?: (href: string) => void }) {
-  return (
-    <div className="md">
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        components={{
-          a: ({ href, children }) => {
-            const h = href || ''
-            if (h.startsWith('/')) {
-              return (
-                <Link to={h} onClick={() => onLink?.(h)}>
-                  {children}
-                </Link>
-              )
-            }
-            return (
-              <a href={h} target="_blank" rel="noreferrer">
-                {children}
-              </a>
-            )
-          },
-        }}
-      >
-        {md}
-      </ReactMarkdown>
-    </div>
-  )
-}
 
 export function Lightbox({ images, index, onClose }: { images: string[]; index: number; onClose: () => void }) {
   const [i, setI] = useState(index)
