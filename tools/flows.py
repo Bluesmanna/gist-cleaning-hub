@@ -1,6 +1,8 @@
 """End-to-end workflow test of the demo in headless Chrome. Each step prints OK / ERR / FAIL.
 Usage: python tools/flows.py [base_url] [screenshot_dir]"""
 import os
+import re
+import subprocess
 import sys
 
 from playwright.sync_api import sync_playwright
@@ -311,8 +313,27 @@ def docs_gated(pg):
         raise Exception('client reached a company doc: ' + pg.url)
 
 
+# On a machine inside Rob's tailnet, Chrome resolves the live assistant's ts.net name to a
+# private 100.x address and Local Network Access blocks it from a public page. Pin it to the
+# public Funnel address so the test sees what an outside visitor sees.
+LIVE_HOST = 'robert.tail48e80c.ts.net'
+
+
+def public_ip(host):
+    """Ask a public resolver (the system one answers tailnet names privately)."""
+    try:
+        out = subprocess.run(['nslookup', host, '1.1.1.1'], capture_output=True, text=True, timeout=15).stdout
+    except (OSError, subprocess.SubprocessError):
+        return ''
+    ips = re.findall(r'(?<![\d.])(\d{1,3}(?:\.\d{1,3}){3})(?![\d.])', out.split(host, 1)[-1])
+    return next((ip for ip in ips if not ip.startswith('100.')), '')
+
+
+pub_ip = public_ip(LIVE_HOST)
+chrome_args = [f'--host-resolver-rules=MAP {LIVE_HOST} {pub_ip}'] if pub_ip and not pub_ip.startswith('100.') else []
+
 with sync_playwright() as p:
-    b = p.chromium.launch(channel='chrome', headless=True)
+    b = p.chromium.launch(channel='chrome', headless=True, args=chrome_args)
     ctx = b.new_context(viewport={'width': 1280, 'height': 900}, geolocation={'latitude': 46.73, 'longitude': -117.0}, permissions=['geolocation'])
     pg = ctx.new_page()
     pg.on('console', lambda m: m.type == 'error' and errs.append(m.text[:200]))

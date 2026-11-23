@@ -37,6 +37,8 @@ All of them get the same input, built in `app/src/lib/ai/`:
 
 The app decides staff vs customer from who is signed in. In this no-server demo that's a UI boundary like the docs (anyone can sign in as a demo employee); the real version checks a login token on the server.
 
+**On a device that's in Rob's own Tailscale network** the `ts.net` name resolves to a private 100.x address, so Chrome asks once whether gistcleaninghub.com may "access other devices on your local network". Click **Allow** (or the answer falls back to offline). Everyone else, including Dustin and clients, reaches it through the public Funnel address and never sees that prompt. The Android app isn't affected. `tools/flows.py` pins the name to the public address so it tests what an outside visitor sees.
+
 **Turning it off:** disable the scheduled task and stop the bridge, or run `tailscale funnel --https=443 off` on that PC. The site keeps working on the offline assistant.
 
 ## Running the bridge yourself
