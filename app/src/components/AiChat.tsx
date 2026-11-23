@@ -43,7 +43,8 @@ export function AiChat({ onClose, inline }: { onClose?: () => void; inline?: boo
     setTurns(HISTORY.get(key) || [])
   }, [key])
   useEffect(() => {
-    if (!inline) input.current?.focus()
+    // Focus the box on desktop; on touch screens the keyboard would cover the suggestions.
+    if (!inline && !window.matchMedia('(pointer: coarse)').matches) input.current?.focus()
   }, [inline])
 
   async function send(q: string) {
