@@ -10,7 +10,7 @@ Open the live site (or the APK). Data is saved in your browser; use **Reset demo
 
 **2. Jamie (cleaning tech)**
 1. Log in → **Jamie Rivera**. The dashboard shows today's home.
-2. **Clock in** (the location is simulated as "on site" in the demo; on Android it uses real GPS). Open **Details** to see the home's checklist and tick a few tasks. **Clock out**.
+2. **Clock in** (the demo simulates being on site so you can test from anywhere; as Dustin, turn off **Simulate being on-site** in Settings to use real GPS in the browser or on Android, and clock-in then only works within 150 m of the home). Open **Details** to see the home's checklist and tick a few tasks. **Clock out**.
 3. **Time**: edit an entry (a note is required), then **Submit hours**.
 4. **Pay**: open a paystub, tap **Explain this paystub**.
 5. **Time off**: request a day. **Expenses**: log mileage or a receipt (attach a photo).

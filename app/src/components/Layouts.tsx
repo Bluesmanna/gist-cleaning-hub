@@ -9,6 +9,7 @@ import { useStore } from '../lib/store'
 import { COMPANY } from '../data/site'
 import { relTime } from '../lib/dates'
 import { AiChat } from './AiChat'
+import { useBackClose } from '../lib/back'
 import { Avatar, DemoBanner, Logo, Modal } from './ui'
 
 /* ---------------- public site ---------------- */
@@ -49,6 +50,7 @@ export function PublicLayout() {
   const [ai, setAi] = useState(false)
   const { pathname } = useLocation()
   useEffect(() => { setOpen(false) }, [pathname])
+  useBackClose(open, () => setOpen(false))
   return (
     <>
       <DemoBanner />
@@ -188,6 +190,7 @@ function navFor(role: string, counts: Record<string, number>): { items: NavItem[
 export function RoleSwitcher() {
   const { state, me, setUser } = useStore()
   const nav = useNavigate()
+  const phone = useNarrow(620) // phones: names only (the group already says the role)
   const groups: [string, string][] = [
     ['owner', 'Owner'],
     ['employee', 'Employees'],
@@ -211,7 +214,7 @@ export function RoleSwitcher() {
               .filter((u) => u.role === r || (r === 'owner' && u.role === 'manager'))
               .map((u) => (
                 <option key={u.id} value={u.id}>
-                  {u.name} — {u.title}
+                  {phone ? u.name : `${u.name} — ${u.title}`}
                 </option>
               ))}
           </optgroup>
@@ -229,6 +232,7 @@ function Notifications() {
   const unread = mine.filter((n) => !n.read).length
   const { pathname } = useLocation()
   useEffect(() => { setOpen(false) }, [pathname])
+  useBackClose(open, () => setOpen(false))
   return (
     <>
       <button className="icon-btn" onClick={() => setOpen(!open)} aria-label={`Notifications${unread ? `, ${unread} unread` : ''}`}>
@@ -272,6 +276,7 @@ export function AppLayout({ title }: { title?: ReactNode }) {
   const [more, setMore] = useState(false)
   const { pathname } = useLocation()
   useEffect(() => { setMore(false) }, [pathname])
+  useBackClose(more, () => setMore(false))
 
   if (!me) return null
   const counts = {

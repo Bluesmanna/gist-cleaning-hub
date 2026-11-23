@@ -22,7 +22,7 @@ Tax withholding is an **estimate** (2026 federal percentage method, Social Secur
 
 ## Time clock with a geofence
 
-Gusto's GIST setup only lets techs clock in at the client's home. The hub does the same: clock-in requires being within a configurable radius (default 150 m) of the home's coordinates. In the browser demo the location is **simulated** by default (owner Settings → "Simulate being on-site"), because Dustin won't be standing in a client's driveway when he tests it; on Android it uses the phone's real GPS. Travel between homes isn't paid time (per the handbook), so it's logged as mileage instead.
+Gusto's GIST setup only lets techs clock in at the client's home. The hub does the same: clock-in requires being within a configurable radius (default 150 m) of the home's coordinates. In the browser demo the location is **simulated** by default (owner Settings → "Simulate being on-site"), because Dustin won't be standing in a client's driveway when he tests it. Turn it off and the same check uses real GPS, in the browser (navigator.geolocation) and in the Android app (native location permission); verified on an Android emulator, where clocking out 5 km from the home was refused. Travel between homes isn't paid time (per the handbook), so it's logged as mileage instead.
 
 ## Docs: readable and downloadable, generated once
 

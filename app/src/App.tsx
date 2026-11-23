@@ -1,7 +1,10 @@
 // Routes. HashRouter so the same build works on GitHub Pages, a custom domain and inside
 // the Android app (file-based WebView) without server rewrites.
-import { lazy, Suspense, type ComponentType, type ReactNode } from 'react'
-import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { lazy, Suspense, useEffect, useRef, type ComponentType, type ReactNode } from 'react'
+import { HashRouter, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { Capacitor } from '@capacitor/core'
+import { App as CapApp } from '@capacitor/app'
+import { closeTopOverlay } from './lib/back'
 import { useStore } from './lib/store'
 import { AppLayout, PublicLayout } from './components/Layouts'
 import { About, AboutApp, Book, Business, Careers, Contact, Home, Login, Organization, Policies, Pricing, Services, Updates } from './pages/Public'
@@ -62,9 +65,32 @@ function ByRole({ owner, employee, client }: { owner?: ReactNode; employee?: Rea
   return el ? <>{el}</> : <Navigate to="/app" replace />
 }
 
+// Android hardware back: close an open overlay, else go back a page, else (on a home
+// screen, or with no history) exit. Without this, Capacitor closes the app on any back press.
+function NativeBack() {
+  const nav = useNavigate()
+  const { pathname } = useLocation()
+  const path = useRef(pathname)
+  useEffect(() => { path.current = pathname }, [pathname])
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform()) return
+    const sub = CapApp.addListener('backButton', () => {
+      if (closeTopOverlay()) return
+      const p = path.current
+      if (p === '/' || p === '/app') return void CapApp.exitApp()
+      const idx = (window.history.state as { idx?: number } | null)?.idx ?? 0
+      if (idx > 0) nav(-1)
+      else nav(p.startsWith('/app') ? '/app' : '/', { replace: true })
+    })
+    return () => { sub.then((s) => s.remove()) }
+  }, [nav])
+  return null
+}
+
 export default function App() {
   return (
     <HashRouter>
+      <NativeBack />
       <Suspense fallback={<div className="boot"><div className="spinner" /> Loading…</div>}>
       <Routes>
         <Route element={<PublicLayout />}>

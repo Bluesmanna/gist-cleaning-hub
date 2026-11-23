@@ -7,6 +7,7 @@ import { Copy, Send, Sparkles, Trash2, X } from 'lucide-react'
 import { useStore } from '../lib/store'
 import { ask, type AiMessage, type AiRequest, type AiResult, type AiTask } from '../lib/ai/provider'
 import { Markdown, Modal } from './ui'
+import { useBackClose } from '../lib/back'
 
 interface Turn extends AiMessage {
   result?: AiResult
@@ -32,6 +33,7 @@ export function AiChat({ onClose, inline }: { onClose?: () => void; inline?: boo
   const [busy, setBusy] = useState(false)
   const end = useRef<HTMLDivElement>(null)
   const input = useRef<HTMLTextAreaElement>(null)
+  useBackClose(!inline && !!onClose, () => onClose?.())
 
   useEffect(() => {
     HISTORY.set(key, turns)

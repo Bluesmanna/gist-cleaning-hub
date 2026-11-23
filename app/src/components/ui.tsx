@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { ChevronLeft, ChevronRight, Inbox, X } from 'lucide-react'
 import { COMPANY, IMAGES } from '../data/site'
+import { useBackClose } from '../lib/back'
 
 export function Logo({ small, to = '/' }: { small?: boolean; to?: string }) {
   return (
@@ -69,6 +70,7 @@ export function Badge({ children, tone }: { children: ReactNode; tone?: string }
 }
 
 export function Modal({ title, onClose, children, footer, wide }: { title: ReactNode; onClose: () => void; children: ReactNode; footer?: ReactNode; wide?: boolean }) {
+  useBackClose(true, onClose)
   useEffect(() => {
     const k = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
     window.addEventListener('keydown', k)
@@ -181,6 +183,7 @@ export function Markdown({ md, onLink }: { md: string; onLink?: (href: string) =
 
 export function Lightbox({ images, index, onClose }: { images: string[]; index: number; onClose: () => void }) {
   const [i, setI] = useState(index)
+  useBackClose(true, onClose)
   useEffect(() => {
     const k = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
