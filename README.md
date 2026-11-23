@@ -36,7 +36,7 @@ A step-by-step test script for each role is in [docs/TESTING.md](docs/TESTING.md
 
 **For clients** — visits, cancel/reschedule with the fee shown up front, invoices and payment, request a cleaning, preferences (pets, notes, preferred cleaner, frequency, add-ons, home photos), messages.
 
-**Docs (from Google Drive)** — all 36 Drive docs (general SOP, 28 home SOPs, two project task lists, both handbooks, three agreement templates) are rendered as readable pages with a table of contents and search, and each downloads as **PDF, Word (.docx), Markdown or text**. Client SOPs are **pseudonymized** for this public demo (see Privacy below).
+**Docs (from Google Drive)** — all 36 Drive docs (general SOP, 28 home SOPs, two project task lists, both handbooks, three agreement templates) are rendered as readable pages with a table of contents and search, and each downloads as **PDF, Word (.docx), Markdown or text**. They live **inside the team app only** (employees: **Handbook & SOPs**; owner: **SOPs & docs**), not on the public site or in the client portal. Client SOPs are **pseudonymized** for this public demo (see Privacy below).
 
 **AI** — a GIST assistant (floating button, or **Assistant** in the menu) plus small AI buttons where they help: explain a paystub, draft a reply to a client, ask a question about a doc, quote a booking. It works offline out of the box, and can be pointed at Rob's own Claude Code through a locked-down local bridge, or at the Claude API. See [docs/AI.md](docs/AI.md).
 

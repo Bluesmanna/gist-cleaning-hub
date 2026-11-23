@@ -33,7 +33,7 @@ Open the live site (or the APK). Data is saved in your browser; use **Reset demo
 2. **Visits**: **Cancel / reschedule** — the fee shown follows the real policy (48h+ free, 24–48h $20, same day half the visit). A fee creates an invoice; Dustin and the tech are notified.
 3. **Request a cleaning**, **Preferences** (pets, notes, preferred cleaner, add-ons, home photos), **Messages**.
 
-**6. Docs** — **SOPs & docs** (or **Docs** on the public site): open a handbook, use the table of contents and search, download PDF / Word / Markdown / text, **Ask AI about this doc**.
+**6. Docs (team only)** — as Jamie open **Handbook & SOPs** (as Dustin, **SOPs & docs**): open a handbook, use the table of contents and search, download PDF / Word / Markdown / text, **Ask AI about this doc**. Signed out or as a client, an old `#/docs` link asks you to sign in as staff, and the assistant won't quote internal docs.
 
 **7. Assistant** — the sparkle button. Try: "What's the cancellation fee with 10 hours notice?", "When is my next payday?" (as Jamie), "How much PTO do I have?", "What do I do if I forget to clock out?".
 
@@ -43,9 +43,9 @@ Run against a local build (`cd app && npm run build && npx vite preview --host 1
 
 ```bash
 python tools/smoke.py http://127.0.0.1:4173/                 # every public route + every route for each role: no console errors, no blank pages
-python tools/flows.py http://127.0.0.1:4173/ ./shots         # 15 end-to-end flows (booking, clock, submit, PTO, AI stub, approvals,
+python tools/flows.py http://127.0.0.1:4173/ ./shots         # 16 end-to-end flows (booking, clock, submit, PTO, AI stub, approvals,
                                                              # payroll, schedule, booking→client, invoices, messages, assistant,
-                                                             # client pay, client cancel, 390px mobile overflow on ~30 screens)
+                                                             # client pay, client cancel, staff-only docs, 390px mobile overflow on ~30 screens)
 python tools/check_leaks.py <private-docs-dir>               # must print 0 hits before any public push
 ```
 

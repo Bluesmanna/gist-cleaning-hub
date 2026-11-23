@@ -29,7 +29,7 @@ export function usePack() {
 /** Docs that need a signature during onboarding. */
 export const SIGNABLE = ['handbook-rct', 'handbook-subrct', 'agreement-rct', 'agreement-subrct', 'sop-general']
 
-export function DocsList({ base = '/docs' }: { base?: string }) {
+export function DocsList({ base = '/app/docs' }: { base?: string }) {
   const { role } = useStore()
   const pack = usePack()
   const [q, setQ] = useState('')
@@ -113,7 +113,7 @@ export function DocsList({ base = '/docs' }: { base?: string }) {
   )
 }
 
-export function DocView({ base = '/docs' }: { base?: string }) {
+export function DocView({ base = '/app/docs' }: { base?: string }) {
   const { slug = '' } = useParams()
   const { state, me, role, update, notify, toast } = useStore()
   const pack = usePack()

@@ -18,7 +18,7 @@
 
 All three get the same input, built in `app/src/lib/ai/`:
 
-- `skills/gist-assistant.md` and `skills/gist-business.md` — the "skills": how the assistant behaves and everything about the business (services, prices, policies, pay rules, roles, privacy).
+- `skills/gist-assistant.md` and `skills/gist-business.md` — the "skills": how the assistant behaves and the public side of the business (services, prices, policies). `skills/gist-team.md` holds the internal side (pay rules, roles, benefits, home SOP and privacy rules) and is added to the prompt only when the person asking is signed in as staff; visitors and clients also only get public-site passages, never handbook, SOP or agreement excerpts.
 - `context.ts` — the asking user's own role-scoped data only: an employee sees their shifts, hours, stubs and PTO; a client sees their visits and invoices; the owner sees the business summary. Nobody's data leaks into another user's prompt.
 - `knowledge.ts` — retrieval over the doc library: the passages that match the question.
 

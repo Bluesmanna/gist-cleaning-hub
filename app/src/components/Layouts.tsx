@@ -109,7 +109,6 @@ export function PublicLayout() {
             <h4>Hub</h4>
             <Link to="/book">Book a cleaning</Link>
             <Link to="/login">Client & team sign-in</Link>
-            <Link to="/docs">Company docs</Link>
             <Link to="/about-this-app">About this prototype</Link>
           </div>
         </div>
@@ -148,7 +147,7 @@ function navFor(role: string, counts: Record<string, number>): { items: NavItem[
         { to: '/app/cards', label: 'Cards', icon: CreditCard },
         { to: '/app/tasks', label: 'Tasks', icon: CheckSquare, count: counts.tasks },
         { to: '/app/onboarding', label: 'Documents & onboarding', icon: ClipboardCheck },
-        { to: '/app/docs', label: 'SOPs & docs', icon: BookOpen, group: 'Team' },
+        { to: '/app/docs', label: 'Handbook & SOPs', icon: BookOpen, group: 'Team' },
         { to: '/app/messages', label: 'Messages', icon: MessageSquare },
         { to: '/app/assistant', label: 'Assistant', icon: Sparkles },
         { to: '/app/profile', label: 'Profile', icon: User },

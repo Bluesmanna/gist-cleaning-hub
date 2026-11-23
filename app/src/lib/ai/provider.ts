@@ -9,10 +9,11 @@
 // doc passages that match the question (knowledge.ts).
 import type { State, User } from '../types'
 import { buildContext } from './context'
-import { search } from './knowledge'
+import { isStaff, scope, search } from './knowledge'
 import { offlineAnswer } from './offline'
 import businessSkill from './skills/gist-business.md?raw'
 import assistantSkill from './skills/gist-assistant.md?raw'
+import teamSkill from './skills/gist-team.md?raw'
 
 export type AiTask = 'chat' | 'explain-stub' | 'draft-reply' | 'doc-qa' | 'quote'
 
@@ -47,8 +48,7 @@ const TASK_HINT: Record<AiTask, string> = {
 
 export function buildPrompt(req: AiRequest, s: State, me: User | null) {
   const lastQ = req.messages.filter((m) => m.role === 'user').slice(-1)[0]?.content || ''
-  const filter = req.docSlug ? (c: { link: string }) => c.link.endsWith('/' + req.docSlug) : undefined
-  const hits = search(`${lastQ} ${req.extra || ''}`.slice(0, 600), req.docSlug ? 8 : 6, filter)
+  const hits = search(`${lastQ} ${req.extra || ''}`.slice(0, 600), req.docSlug ? 8 : 6, scope(me, req.docSlug))
   const docs = hits.map((h) => `<doc title="${h.title}" section="${h.heading}">\n${h.text}\n</doc>`).join('\n')
   const history = req.messages
     .slice(-10, -1)
@@ -56,6 +56,7 @@ export function buildPrompt(req: AiRequest, s: State, me: User | null) {
     .join('\n')
   const prompt = [
     `<app_data>\n${buildContext(s, me)}\n</app_data>`,
+    isStaff(me) ? `<team_knowledge>\n${teamSkill}\n</team_knowledge>` : '',
     docs ? `<docs>\n${docs}\n</docs>` : '',
     req.extra ? `<task_context>\n${req.extra}\n</task_context>` : '',
     history ? `<conversation>\n${history}\n</conversation>` : '',

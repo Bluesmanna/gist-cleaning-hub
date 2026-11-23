@@ -3,6 +3,7 @@
 // guide to the app itself. Chunks are scored with a small BM25 so the most relevant
 // passages go into each prompt (and power the offline answers).
 import { DOCS, sections } from '../docs'
+import type { User } from '../types'
 import { ABOUT, ADDONS, CANCELLATION, COMPANY, HIRING, SERVICES, UPDATES } from '../../data/site'
 
 export interface Chunk {
@@ -66,6 +67,14 @@ export function chunks(): Chunk[] {
   AVG = out.reduce((s, c) => s + c.tokens.length, 0) / out.length
   CHUNKS = out
   return out
+}
+
+/** Company docs are for staff only: visitors and clients search just the public-site knowledge. */
+export const isStaff = (me: Pick<User, 'role'> | null | undefined) => !!me && (me.role === 'owner' || me.role === 'manager' || me.role === 'employee')
+
+export function scope(me: User | null, docSlug?: string): (c: Chunk) => boolean {
+  const staff = isStaff(me)
+  return (c) => (staff || c.id.startsWith('site#')) && (!docSlug || c.link.endsWith('/' + docSlug))
 }
 
 export function search(q: string, k = 6, filter?: (c: Chunk) => boolean): (Chunk & { score: number })[] {

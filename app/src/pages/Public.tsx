@@ -1,7 +1,7 @@
 // Public website: everything gistcleaning.com has (services, pricing, about, policy,
 // updates, organization gallery) plus online booking, careers and sign-in.
 import { useMemo, useState } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { ArrowRight, Briefcase, CalendarCheck, Check, Clock, ThumbsUp, Heart, Mail, MapPin, Phone, ShieldCheck, Sparkles, Users } from 'lucide-react'
 import { useStore } from '../lib/store'
 import { ABOUT, ADDONS, CANCELLATION, COMPANY, HIRING, IMAGES, ORG_GALLERY, SERVICES, TESTIMONIALS, UPDATES } from '../data/site'
@@ -735,9 +735,12 @@ export function Book() {
 export function Login() {
   const { state, setUser } = useStore()
   const nav = useNavigate()
+  // where the person was headed before being asked to sign in (e.g. a company doc link)
+  const from = (useLocation().state as { from?: string } | null)?.from
+  const wantsDocs = !!from?.startsWith('/app/docs')
   const pick = (id: string) => {
     setUser(id)
-    nav('/app')
+    nav(from?.startsWith('/app') ? from : '/app')
   }
   const groups: { title: string; icon: typeof Users; role: string; blurb: string }[] = [
     { title: 'Owner', icon: ShieldCheck, role: 'owner', blurb: 'Schedule, approvals, payroll, bookings, invoices, clients, settings.' },
@@ -751,6 +754,11 @@ export function Login() {
           <h2>Sign in</h2>
           <p>This is a demo: pick anyone to see the app as they would. Switch any time from “Viewing as” at the top.</p>
         </div>
+        {wantsDocs && (
+          <div className="notice warn" style={{ marginBottom: 16 }}>
+            <ShieldCheck size={16} /> Company docs (handbooks, SOPs, agreements and home checklists) are for the GIST team. Sign in as the owner or an employee to open them.
+          </div>
+        )}
         <div className="grid g3">
           {groups.map((g) => (
             <div key={g.role} className="card login-card">
@@ -806,7 +814,7 @@ export function AboutApp() {
           <h3>What’s inside</h3>
           <ul>
             <li>Everything from gistcleaning.com: services, pricing, add-ons, about, cancellation policy, updates and the organization gallery.</li>
-            <li>Every company Google Drive doc (SOPs, handbooks, agreements, client SOPs, project lists), readable in-app and downloadable as Word, PDF, Markdown or text. Client docs are pseudonymized in the public version.</li>
+            <li>Every company Google Drive doc (SOPs, handbooks, agreements, client SOPs, project lists), readable and downloadable as Word, PDF, Markdown or text inside the team app (owner and employees, after sign-in; not on the public site or for clients). Client docs are pseudonymized in this demo.</li>
             <li>Gusto-style team tools: geofenced time clock, schedules and open shifts, availability, time-off and PTO accrual, semi-monthly payroll with paystubs, expenses and reimbursements, supply and gas cards, onboarding forms and e-signatures.</li>
           </ul>
           <p className="small muted">Source code and setup notes are on GitHub (link in the README). Not affiliated with Gusto.</p>

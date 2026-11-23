@@ -198,7 +198,7 @@ def mobile_overflow(pg):
             w = pg.evaluate(width)
             if w[0] > w[1] + 2:
                 bad.append(f'{who}:{r} {w}')
-    for r in ['', 'services', 'pricing', 'book', 'docs', 'about', 'organization', 'careers']:
+    for r in ['', 'services', 'pricing', 'book', 'about', 'organization', 'careers']:
         go(pg, r)
         w = pg.evaluate(width)
         if w[0] > w[1] + 2:
@@ -212,6 +212,42 @@ def mobile_overflow(pg):
         raise Exception('horizontal overflow: ' + '; '.join(bad))
 
 
+def docs_gated(pg):
+    """Company docs are staff-only: hidden from visitors (route, footer, assistant) and clients."""
+    def sign_out():
+        pg.get_by_role('button', name='Sign out').first.click()
+        pg.wait_for_timeout(400)
+    login(pg, 'Jamie')
+    sign_out()
+    go(pg, 'docs/handbook-rct')
+    if '#/login' not in pg.url:
+        raise Exception('signed-out doc link did not go to sign-in: ' + pg.url)
+    pg.wait_for_selector('.notice:has-text("for the GIST team")', timeout=3000)
+    if pg.locator('footer a', has_text='Company docs').count():
+        raise Exception('public footer still links to company docs')
+    pg.locator('button.btn.block', has_text='Jamie').first.click()
+    pg.wait_for_timeout(600)
+    if not pg.url.endswith('#/app/docs/handbook-rct'):
+        raise Exception('after sign-in did not land on the doc: ' + pg.url)
+    pg.wait_for_selector('h1, h2', timeout=3000)
+    sign_out()
+    go(pg, '')
+    pg.locator('.ai-fab').click()
+    pg.locator('.ai-input textarea').fill('What does the employee handbook say about supplies and the supply card?')
+    pg.keyboard.press('Enter')
+    pg.wait_for_selector('.ai-msgs .bubble.assistant >> nth=0', timeout=10000)
+    pg.wait_for_timeout(800)
+    txt = ' '.join(pg.locator('.ai-msgs').all_inner_texts())
+    hrefs = pg.eval_on_selector_all('.ai-msgs a', 'els => els.map(e => e.getAttribute("href") || "")')
+    if 'Handbook' in txt.split('supply card?')[-1] or any('/app/docs' in h for h in hrefs):
+        raise Exception('visitor assistant quoted internal docs')
+    shot(pg, 'docs-gated-visitor-ai')
+    login(pg, 'Aspen')
+    go(pg, 'app/docs/handbook-rct')
+    if not pg.url.endswith('#/app'):
+        raise Exception('client reached a company doc: ' + pg.url)
+
+
 with sync_playwright() as p:
     b = p.chromium.launch(channel='chrome', headless=True)
     ctx = b.new_context(viewport={'width': 1280, 'height': 900}, geolocation={'latitude': 46.73, 'longitude': -117.0}, permissions=['geolocation'])
@@ -221,7 +257,7 @@ with sync_playwright() as p:
     pg.on('dialog', lambda d: d.accept())
     go(pg, '')
     for f in [public_booking, emp_clock, emp_submit, emp_pto, emp_stub_ai, owner_approve, owner_payroll, owner_schedule, owner_booking,
-              owner_invoices, owner_message, assistant, client_pay, client_cancel, mobile_overflow]:
+              owner_invoices, owner_message, assistant, client_pay, client_cancel, docs_gated, mobile_overflow]:
         run(f.__name__, f, pg)
     b.close()
 for r in results:

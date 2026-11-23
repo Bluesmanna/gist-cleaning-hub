@@ -1,7 +1,7 @@
 // Routes. HashRouter so the same build works on GitHub Pages, a custom domain and inside
 // the Android app (file-based WebView) without server rewrites.
 import { lazy, Suspense, useEffect, useRef, type ComponentType, type ReactNode } from 'react'
-import { HashRouter, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { HashRouter, Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Capacitor } from '@capacitor/core'
 import { App as CapApp } from '@capacitor/app'
 import { closeTopOverlay } from './lib/back'
@@ -55,7 +55,13 @@ const Messages = lz(loadShared, 'Messages')
 
 function Guard({ children }: { children: ReactNode }) {
   const { me } = useStore()
-  return me ? <>{children}</> : <Navigate to="/login" replace />
+  const { pathname } = useLocation()
+  return me ? <>{children}</> : <Navigate to="/login" replace state={{ from: pathname }} />
+}
+
+function ToAppDoc() {
+  const { slug = '' } = useParams()
+  return <Navigate to={`/app/docs/${slug}`} replace />
 }
 
 /** Pick the screen for the signed-in role; anything not allowed falls back to the dashboard. */
@@ -106,8 +112,9 @@ export default function App() {
           <Route path="careers" element={<Careers />} />
           <Route path="book" element={<Book />} />
           <Route path="login" element={<Login />} />
-          <Route path="docs" element={<DocsList />} />
-          <Route path="docs/:slug" element={<DocView />} />
+          {/* company docs are staff-only: old public links go to the team app (sign-in first) */}
+          <Route path="docs" element={<Navigate to="/app/docs" replace />} />
+          <Route path="docs/:slug" element={<ToAppDoc />} />
           <Route path="about-this-app" element={<AboutApp />} />
         </Route>
         <Route path="app" element={<Guard><AppLayout /></Guard>}>

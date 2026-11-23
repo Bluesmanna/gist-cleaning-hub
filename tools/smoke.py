@@ -4,7 +4,7 @@ import sys, json
 from playwright.sync_api import sync_playwright
 
 BASE = sys.argv[1] if len(sys.argv) > 1 else 'http://127.0.0.1:4173/'
-PUBLIC = ['', 'about', 'services', 'pricing', 'organization', 'business', 'contact', 'policies', 'updates', 'careers', 'book', 'login', 'docs', 'docs/sop-general', 'about-this-app']
+PUBLIC = ['', 'about', 'services', 'pricing', 'organization', 'business', 'contact', 'policies', 'updates', 'careers', 'book', 'login', 'about-this-app']
 ROLES = {
     'u_owner': ['', 'schedule', 'approvals', 'payroll', 'team', 'team/u_jamie', 'clients', 'bookings', 'invoices', 'reports', 'messages', 'docs', 'assistant', 'settings', 'tasks'],
     'u_jamie': ['', 'schedule', 'time', 'pay', 'time-off', 'availability', 'expenses', 'cards', 'tasks', 'onboarding', 'docs', 'docs/handbook-rct', 'messages', 'assistant', 'profile'],

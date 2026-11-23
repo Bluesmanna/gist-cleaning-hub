@@ -6,7 +6,7 @@ import type { State, User } from '../types'
 import { addDays, fmtDay, fmtTime, money, today } from '../dates'
 import { POLICY, computeStub, hoursFor, periodFor, ptoBalance } from '../payroll'
 import { ADDONS, CANCELLATION, COMPANY, SERVICES, cancellationFee } from '../../data/site'
-import { search } from './knowledge'
+import { scope, search } from './knowledge'
 import type { AiRequest, AiResult } from './provider'
 
 const has = (q: string, ...words: string[]) => words.some((w) => new RegExp(`\\b${w}`, 'i').test(q))
@@ -93,8 +93,7 @@ export function offlineAnswer(req: AiRequest, s: State, me: User | null): AiResu
   }
 
   // --- doc retrieval ---
-  const filter = req.docSlug ? (c: { link: string }) => c.link.endsWith('/' + req.docSlug) : undefined
-  const hits = search(q, 3, filter)
+  const hits = search(q, 3, scope(me, req.docSlug))
   if (!hits.length) {
     return done([
       'I couldn’t find that in GIST’s docs. Try asking about a client’s SOP, pay and timekeeping, PTO, supplies, scheduling, cancellation, or prices.',
